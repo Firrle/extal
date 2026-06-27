@@ -1,6 +1,9 @@
 # Extal World Builder
 
-Extal World Builder is an Electron-based desktop app for building and organizing worldbuilding material for the Extal setting. The project combines a desktop shell, a browser-based frontend, editor tooling, themes, mapping support, and optional local AI/TTS helpers.
+Extal World Builder is an Electron-based desktop app for writers and gamers. 
+
+# Why This Matters for Writers and Worldbuilders
+The app is built around continuity and retrieval: if your world has many names, places, historical events, and moving relationships, Extal helps you keep it navigable. You are not just writing pages - you are building a connected reference system you can actually use while drafting, planning sessions, or revising long projects.
 
 ## What It Includes
 
