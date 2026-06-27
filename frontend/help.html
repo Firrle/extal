@@ -191,7 +191,6 @@
                 <li><a href="#quick-start">Quick Start</a></li>
                 <li><a href="#layout">Layout</a></li>
                 <li><a href="#vaults">Vaults</a></li>
-                <li><a href="#writing">Drafting</a></li>
                 <li><a href="#topics">World</a></li>
                 <li><a href="#characters">Characters</a></li>
                 <li><a href="#timeline">Timeline</a></li>
@@ -212,9 +211,9 @@
             <h2>Quick Start</h2>
             <ol>
                 <li>Click <code>New Vault</code> to start a new world, or <code>Load Vault</code> to open an existing vault.</li>
-                <li>Open <code>World + Draft</code> to start building your world and drafting your manuscript.</li>
-                <li>In the left sidebar, use <code>Writing</code> for chapters/scenes and <code>World</code> for topics.</li>
-                <li>Edit content in the center editor and use the right panel for metadata, links, compile, and tools.</li>
+                <li>Open <code>World</code> to start building topics and notes for your setting.</li>
+                <li>Use the left sidebar to create and organize topics.</li>
+                <li>Edit content in the center editor and use the right panel for metadata, links, and tools.</li>
                 <li>Use the editor toolbar for spelling and grammar, AI rewrite, TTS playback, and WAV export.</li>
             </ol>
             <div class="note">Changes auto-save shortly after edits. <code>Save As</code> creates a copy at a new location.</div>
@@ -224,7 +223,7 @@
             <h2>Workspace Layout</h2>
             <h3>Top Bar</h3>
             <ul>
-                <li>Category tabs: <code>World + Draft</code>, <code>Characters</code>, <code>Timeline</code>, <code>Maps</code>.</li>
+                <li>Category tabs: <code>World</code>, <code>Characters</code>, <code>Timeline</code>, <code>Maps</code>.</li>
                 <li>Left and right panel toggles: <code>«</code> and <code>»</code>.</li>
                 <li>Vault controls: <code>New Vault</code>, <code>Load Vault</code>, <code>Save As</code>.</li>
                 <li>AI controls: <code>Use Local AI</code>, <code>AI Models</code>, <code>Scan File</code>, <code>Scan Folder</code>.</li>
@@ -233,12 +232,12 @@
             </ul>
             <h3>Panels</h3>
             <ul>
-                <li>Left panel: item tree. In <code>World + Draft</code> it is split into two sections: <code>Writing</code> (chapters/scenes) and <code>World</code> (topics).</li>
+                <li>Left panel: item tree for the current category.</li>
                 <li>Center panel: rich editor, timeline view, map view, character tabs.</li>
                 <li>Right panel: metadata, linked items, backlinks, marker editor.</li>
             </ul>
             <div class="note">You can drag the vertical dividers to resize panels. The top-bar toggle buttons collapse and restore the left sidebar or right metadata panel.</div>
-            <div class="note">The editor header shows <code>Project</code> and <code>Draft</code> titles. Click either title to rename (saved in the vault).</div>
+            <div class="note">The editor header shows the current project and world titles. Click them to rename when available.</div>
         </section>
 
         <section id="vaults">
@@ -251,83 +250,14 @@
             </ul>
             <div class="note">A safety backup file <code>&lt;vault&gt;.bak</code> is created next to your vault periodically during saves.</div>
             <div class="note">The desktop menu also includes <code>Save Vault</code>, <code>Find & Replace</code>, <code>Rebuild Vault Index</code>, and export actions for the current tab or the full vault.</div>
-            <div class="note">In <code>World + Draft</code>, tools that scope by “category” will follow what you’re editing: world topics vs writing scenes/chapters.</div>
-        </section>
-
-        <section id="writing">
-            <h2>Drafting (Chapters, Scenes)</h2>
-            <p>Drafting lives inside the <code>World + Draft</code> tab. Use the <code>Writing</code> section in the left sidebar to organize chapters and scenes.</p>
-
-            <h3>Binder (Left Panel)</h3>
-            <ul>
-                <li>Create <strong>Chapters</strong> and <strong>Scenes</strong> in a tree structure.</li>
-                <li>Right-click in the binder to add a chapter or scene.</li>
-                <li>If the binder is empty, you can generate a starter project.</li>
-            </ul>
-
-            <h3>Scene Editor + Metadata (Center + Right)</h3>
-            <ul>
-                <li>Scenes open in the rich text editor.</li>
-                <li>Scene metadata includes status, synopsis, POV, location, optional timeline date, labels, and target words.</li>
-                <li>Use the Writing links panel to connect scenes to characters, topics, maps, markers, and events.</li>
-                <li>Use <code>Insert</code> to add internal links into the manuscript text.</li>
-                <li>The main editor toolbar is available while drafting (formatting, tables, images, links, etc.).</li>
-            </ul>
-
-            <h3>Chapter Views (Corkboard / Outline)</h3>
-            <ul>
-                <li>Chapters are containers. Clicking a chapter typically opens a scene so you can start writing immediately.</li>
-                <li>Use <code>Cards</code> / <code>Outline</code> controls to switch between planning views for the current chapter.</li>
-                <li><code>Book Outline</code> shows an all-chapters outline for the full draft.</li>
-                <li><code>Multi</code> opens a multi-chapter view so you can load several chapters side-by-side, add more chapters with <code>+ Add chapter…</code>, and clear the temporary set when done.</li>
-                <li>Use <code>+ Scene</code> to create a scene within the current chapter.</li>
-            </ul>
-
-            <h3>Snapshots</h3>
-            <ul>
-                <li>Use <code>Snapshot</code> to save a named version of the current scene before a major revision.</li>
-                <li>Use <code>Compare</code> to open the snapshot manager, compare the current scene against a saved snapshot, rename snapshots, delete old ones, or restore a selected version.</li>
-                <li>Comparison modes include highlighted <code>Diff</code> view and <code>Side-by-side</code> view.</li>
-                <li>AI Rewrite also creates a protective snapshot before it applies text changes.</li>
-            </ul>
-
-            <h3>Scene Timeline Metadata</h3>
-            <ul>
-                <li>Each scene can store an optional <code>Timeline date</code> plus linked timeline events in the right panel.</li>
-                <li>Use <code>Show on Timeline</code> to jump to the linked event, or to the Timeline tab if the scene only has a date.</li>
-                <li>The app warns when a scene date falls outside a linked event range, or when chapter scene dates move backward in sequence.</li>
-            </ul>
-
-            <h3>Writing Tools</h3>
-            <ul>
-                <li>Open <code>Writing Tools</code> for typography, manuscript search/replace, project defaults, and consistency checks.</li>
-                <li><strong>Typography</strong>: paper width, padding, font size, line height, paragraph spacing, indentation, custom font family.</li>
-                <li><strong>Manuscript Search</strong>: global find/replace with case-sensitive, whole-word, and regex options.</li>
-                <li><strong>Templates</strong>: default status, target words, POV, location, labels, and scene HTML template.</li>
-                <li><strong>Consistency</strong>: quick heuristic check or AI-based contradiction check for project, chapter, or scene scope.</li>
-            </ul>
-
-            <h3>Focus Mode</h3>
-            <ul>
-                <li>Use <code>Focus Mode</code> to hide panels and write distraction-free.</li>
-                <li>Exit with the <code>Exit Focus</code> button or <code>Esc</code>.</li>
-            </ul>
-
-            <h3>Compile / Export</h3>
-            <ul>
-                <li>Use <code>Compile</code> to export writing projects as HTML, DOCX, or PDF.</li>
-                <li><code>Current chapter</code> compile works from a scene (the app will compile the scene’s chapter).</li>
-                <li>Compile scope can target the current chapter, the whole manuscript, or a custom selection of chapters and scenes.</li>
-                <li>Custom selection mode includes <code>Select all</code>, <code>Select none</code>, and a separate drag-reorder list for compile order that does not change binder order.</li>
-                <li>DOCX compile supports embedded images and tables.</li>
-            </ul>
+            <div class="note">Most tools follow the current category, so the sidebar and right panel update depending on whether you are in World, Characters, Timeline, or Maps.</div>
         </section>
 
         <section id="topics">
             <h2>World (Topics)</h2>
             <h3>Create and Organize</h3>
             <ol>
-                <li>Open <code>World + Draft</code>.</li>
+                <li>Open <code>World</code>.</li>
                 <li>In the left sidebar, use the <code>World</code> section and click <code>+ Topic</code> for a root topic.</li>
                 <li>Right-click a topic for <code>Add Child Topic</code>, <code>Rename</code>, <code>Delete</code>.</li>
                 <li>Drag topics to reorder, nest, or move between levels.</li>
@@ -578,7 +508,7 @@
                 <li>TTS settings include provider, system voice, Piper model, delivery preset, grammar cleanup, pause strength, speed, pitch, and voice preview.</li>
                 <li>Topic and character templates can be set as defaults, applied to the current item, or captured from the current item.</li>
             </ul>
-            <div class="note">Theme settings are local UI preferences. Writing typography and writing project defaults are saved in the vault.</div>
+            <div class="note">Theme settings are local UI preferences. Topic and character template choices persist across sessions.</div>
         </section>
 
         <section id="desktop-menu">
@@ -602,7 +532,7 @@
                     </tr>
                     <tr>
                         <td>File → Export Current Tab</td>
-                        <td>Exports the current workspace. In <code>World + Draft</code>, export targets what you’re currently editing (<code>World</code> topics vs <code>Writing</code> scenes/chapters).</td>
+                        <td>Exports the current workspace for the tab you are using.</td>
                     </tr>
                     <tr>
                         <td>File → Export All Content</td>
@@ -633,7 +563,7 @@
                 <tbody>
                     <tr>
                         <td>Tree item (right-click)</td>
-                        <td>Add child item (topic under World, scene under a chapter), rename, delete.</td>
+                        <td>Add child item where supported, rename, delete.</td>
                     </tr>
                     <tr>
                         <td>Editor (right-click)</td>

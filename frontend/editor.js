@@ -38,7 +38,7 @@
 
         // Main editor
         window.editor = Editor.create('#editor-content-wrapper', {
-            placeholder: 'Start writing...',
+            placeholder: 'Start editing...',
             captureTabKey: true
         });
         window.bioEditor = Editor.create('#char-bio-editor', { placeholder: 'Character biography...' });

@@ -2488,7 +2488,7 @@ function beforeSceneSwitch() {
 	    <div id="category-tabs">
 	        <button id="btn-collapse-left" class="top-toggle-btn" title="Hide sidebar">«</button>
 	        <button id="btn-collapse-right" class="top-toggle-btn" title="Hide right panel">»</button>
-	        <button data-cat="topics" class="active">World + Draft</button>
+	        <button data-cat="topics" class="active">World</button>
 	        <button data-cat="characters">Characters</button>
 	        <button data-cat="timeline">Timeline</button>
 	        <button data-cat="maps">Maps</button>
@@ -2529,7 +2529,7 @@ function beforeSceneSwitch() {
             <!-- Left Panel - Tree View -->
 	            <div id="panel-left" class="panel">
 	                <div id="sidebar-header" style="padding: 10px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
-	                            <span id="sidebar-category-title" style="font-weight: 600; color: var(--text-primary); font-size: 14px;">World + Draft</span>
+	                            <span id="sidebar-category-title" style="font-weight: 600; color: var(--text-primary); font-size: 14px;">World</span>
 	                    <button id="add-item-btn" class="char-btn" style="padding: 6px 12px; background: var(--accent); border: none; color: white; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: 500;" title="Add New Item">+ Add</button>
 	                </div>
                 
@@ -2551,12 +2551,12 @@ function beforeSceneSwitch() {
                     <div id="editor-container" class="view hidden">
                         <div class="editor-header">
                             <div class="editor-title-stack">
-                                <div class="editor-project-row" aria-label="Project and draft titles">
+                                <div class="editor-project-row" aria-label="Project and world titles">
                                     <span class="editor-project-label">Project:</span>
                                     <span id="project-title-display" class="editor-project-title" title="Click to rename project">Untitled Project</span>
                                     <span id="manuscript-title-sep" class="editor-project-sep">|</span>
-                                    <span id="manuscript-title-label" class="editor-project-label">Draft:</span>
-                                    <span id="manuscript-title-display" class="editor-project-title" title="Click to rename draft">Untitled Draft</span>
+                                    <span id="manuscript-title-label" class="editor-project-label">World:</span>
+                                    <span id="manuscript-title-display" class="editor-project-title" title="Click to rename world">Untitled World</span>
                                 </div>
                                 <div id="editor-title">No document selected</div>
                             </div>
@@ -5969,7 +5969,7 @@ function renderUIState() {
         const titleEl = document.getElementById("sidebar-category-title");
         if (titleEl) {
             const titles = {
-                "topics": "World + Draft",
+                "topics": "World",
                 "characters": "Characters",
                 "timeline": "Timeline",
                 "maps": "Maps"
@@ -7909,7 +7909,7 @@ function refreshWritingInsertLinkDropdown() {
             if (currentNode && currentNode.kind === "chapter") {
                 chapterId = currentNode.id;
             } else if (currentNode && currentNode.kind === "scene") {
-                // Chapters auto-open a scene in World + Draft, so allow compiling "current chapter"
+                // Chapters auto-open a scene in the current world workspace, so allow compiling "current chapter"
                 // even if the selected node is a scene.
                 const chap = getWritingChapterForScene(currentNode);
                 chapterId = chap ? chap.id : null;
@@ -16222,7 +16222,7 @@ function navigateToItem(itemId, itemType) {
         // Switch to appropriate category
         const categoryMap = {
             'topic': 'topics',
-            // Writing lives inside the World + Draft tab now.
+            // Legacy writing items still route through the world workspace.
             'writing': 'topics',
             'character': 'characters',
             'event': 'timeline',

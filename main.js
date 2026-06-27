@@ -306,7 +306,6 @@ function ensureVaultExists() {
     } else {
       const emptyVault = {
         topics: {},
-        writing: {},
         characters: {},
         events: {},
         maps: {}
@@ -319,7 +318,6 @@ function ensureVaultExists() {
 const EXPORT_FORMATS = new Set(["html", "xml", "docx", "pdf"]);
 const CATEGORY_TO_SECTION_KEY = {
   topics: "topics",
-  writing: "writing",
   characters: "characters",
   timeline: "events",
   events: "events",
@@ -327,7 +325,6 @@ const CATEGORY_TO_SECTION_KEY = {
 };
 const EXPORT_TAB_DEFS = [
   { key: "topics", title: "Topics" },
-  { key: "writing", title: "Writing" },
   { key: "characters", title: "Characters" },
   { key: "events", title: "Timeline Events" },
   { key: "maps", title: "Maps" }
@@ -676,32 +673,6 @@ function buildMapEntries(mapsMap) {
     });
 }
 
-function buildWritingTreeEntries(writingMap) {
-  const nodes = Object.values(writingMap || {});
-  const chapters = nodes.filter((n) => n && n.kind === "chapter");
-  const scenes = nodes.filter((n) => n && n.kind === "scene");
-
-  const scenesByParent = new Map();
-  scenes.forEach((scene) => {
-    const parentId = scene.parentId || null;
-    if (!scenesByParent.has(parentId)) scenesByParent.set(parentId, []);
-    scenesByParent.get(parentId).push(scene);
-  });
-
-  const chapterEntries = chapters
-    .slice()
-    .sort(sortByOrderThenName)
-    .map((chapter) => {
-      const childScenes = (scenesByParent.get(chapter.id) || []).slice().sort(sortByOrderThenName);
-      const children = childScenes.map((scene) => createExportEntry("writing-scene", scene));
-      return createExportEntry("writing-chapter", chapter, { children });
-    });
-
-  const orphanScenes = (scenesByParent.get(null) || []).slice().sort(sortByOrderThenName);
-  const orphanEntries = orphanScenes.map((scene) => createExportEntry("writing-scene", scene));
-  return chapterEntries.concat(orphanEntries);
-}
-
 function countEntries(entries) {
   return (entries || []).reduce((sum, entry) => sum + 1 + countEntries(entry.children || []), 0);
 }
@@ -716,7 +687,6 @@ function buildExportModel(worldData, scope, category) {
   const sections = activeDefs.map((def) => {
     let entries = [];
     if (def.key === "topics") entries = buildTopicTreeEntries(source.topics || {});
-    else if (def.key === "writing") entries = buildWritingTreeEntries(source.writing || {});
     else if (def.key === "characters") entries = buildCharacterEntries(source.characters || {});
     else if (def.key === "events") entries = buildEventEntries(source.events || {});
     else if (def.key === "maps") entries = buildMapEntries(source.maps || {});
@@ -3214,61 +3184,6 @@ ipcMain.handle("elyria:save-vault-as", async (event, data) => {
   } catch (error) {
     console.error("Error saving vault:", error);
     return null;
-  }
-});
-
-// ------------------------------------------------------------
-// Compile Writing Manuscript (chapter or full project)
-// ------------------------------------------------------------
-ipcMain.handle("elyria:compile-writing", async (event, payload) => {
-  try {
-    const format = String(payload?.format || "docx").toLowerCase();
-    if (!["html", "docx", "pdf"].includes(format)) {
-      return { success: false, error: `Unsupported format: ${format}` };
-    }
-
-    const requestedScope = String(payload?.scope || "project").toLowerCase();
-    const scope = requestedScope === "chapter" ? "chapter" : (requestedScope === "selection" ? "selection" : "project");
-    const chapterId = payload?.chapterId || null;
-    const selectedIds = Array.isArray(payload?.selectedIds) ? payload.selectedIds : null;
-    const orderedSceneIds = Array.isArray(payload?.orderedSceneIds) ? payload.orderedSceneIds : null;
-    const includeChapterHeadings = payload?.includeChapterHeadings === false ? false : true;
-    const data = payload?.data && typeof payload.data === "object" ? payload.data : {};
-    const writingMap = data.writing || {};
-
-    const manuscript = buildWritingManuscriptModel(writingMap, { scope, chapterId, selectedIds, orderedSceneIds, includeChapterHeadings });
-    const baseName = scope === "chapter"
-      ? "extal-writing-chapter"
-      : (scope === "selection" ? "extal-writing-selection" : "extal-writing-manuscript");
-    const defaultPath = path.join(app.getPath("documents"), `${baseName}.${format}`);
-
-    const saveResult = await dialog.showSaveDialog(BrowserWindow.getFocusedWindow() || mainWindow, {
-      title: "Compile Writing",
-      defaultPath,
-      filters: [
-        { name: `${format.toUpperCase()} Files`, extensions: [format] },
-        { name: "All Files", extensions: ["*"] }
-      ]
-    });
-
-    if (saveResult.canceled || !saveResult.filePath) {
-      return { success: false, cancelled: true };
-    }
-
-    const filePath = ensureFileExtension(saveResult.filePath, format);
-    if (format === "html") {
-      fs.writeFileSync(filePath, manuscript.html, "utf8");
-    } else if (format === "docx") {
-      const buf = buildDocxBufferFromHtml(manuscript.html);
-      fs.writeFileSync(filePath, buf);
-    } else if (format === "pdf") {
-      await writePdfFromHtml(filePath, manuscript.html);
-    }
-
-    return { success: true, path: filePath };
-  } catch (error) {
-    console.error("Error compiling writing:", error);
-    return { success: false, error: error.message || "Unknown compile error" };
   }
 });
 

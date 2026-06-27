@@ -9,7 +9,7 @@
   - LanguageTool
   - AI Rewrite
   - TTS and WAV export
-  - Settings, templates, and Writing Tools
+  - Settings, templates, and linking workflow
 
 - **[LINKING_SYSTEM_GUIDE.md](LINKING_SYSTEM_GUIDE.md)** - Linking and navigation guide
   - Clickable links
@@ -43,7 +43,6 @@ The current documentation set now covers these user-facing features:
 - Local AI Rewrite workflow for GGUF models
 - Text to Speech with bundled Piper or system voices
 - WAV export with bundled Piper
-- Writing Tools typography, search/replace, project defaults, and consistency checks
 - Linking, backlinks, and relationship navigation
 
 ---
@@ -72,7 +71,7 @@ The current documentation set now covers these user-facing features:
 ## Notes
 
 - The older docs were centered mostly on the theme system.
-- The main quick start now reflects the broader current app workflow, including writing tools and TTS.
+- The main quick start now reflects the current worldbuilding-focused workflow and TTS support.
 - Feature-specific technical docs remain separated so user docs stay focused on usage.
 All colors use CSS variables, so:
 - Any new CSS element can use colors
@@ -127,7 +126,7 @@ See **[TESTING_CHECKLIST.md](TESTING_CHECKLIST.md)** for detailed troubleshootin
 1. Read **[QUICK_START.md](QUICK_START.md)** to get started
 2. Try each built-in theme
 3. Customize colors to your preference
-4. Export your favorite theme
+4. Explore linking between topics, characters, maps, and events
 5. Refer to **[TESTING_CHECKLIST.md](TESTING_CHECKLIST.md)** for validation
 
 ---

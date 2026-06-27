@@ -639,21 +639,6 @@
                 color: var(--text-primary);
             }
 
-            .editor-header-tab.editor-header-tab-writing {
-                background: color-mix(in srgb, #355c7d 20%, var(--bg-primary));
-                border-color: color-mix(in srgb, #6c9bcf 45%, var(--border-color));
-            }
-
-            .editor-header-tab.editor-header-tab-writing:hover {
-                border-color: color-mix(in srgb, #8db8ea 70%, var(--border-color));
-            }
-
-            .editor-header-tab.editor-header-tab-writing.active {
-                background: color-mix(in srgb, #4f83b6 28%, var(--bg-primary));
-                border-color: color-mix(in srgb, #8db8ea 78%, var(--border-color));
-                color: var(--text-primary);
-            }
-
             .editor-header-tab.editor-header-tab-topic {
                 background: color-mix(in srgb, #6b4d2f 16%, var(--bg-primary));
                 border-color: color-mix(in srgb, #b38a53 38%, var(--border-color));
@@ -3289,29 +3274,6 @@
                         <div id="editor-content-wrapper" class="editor-content"></div>
                     </div>
 
-                    <!-- Writing Chapter View -->
-                    <div id="writing-chapter-view" class="view hidden" style="padding: 14px; overflow:auto;">
-                        <div style="display:flex; align-items:center; justify-content:space-between; gap: 10px; flex-wrap:wrap;">
-                            <div>
-                                <div id="writing-chapter-title" style="font-size: 16px; font-weight: 700;">Chapter</div>
-                                <div id="writing-chapter-subtitle" class="char-help">Board</div>
-                            </div>
-                            <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                                <button id="writing-view-corkboard" class="char-btn primary" type="button">Cards</button>
-                                <button id="writing-view-outline" class="char-btn" type="button">Outline</button>
-                                <button id="writing-view-book-outline" class="char-btn" type="button" title="Show a book-wide outline (all chapters)">Book Outline</button>
-                                <button id="writing-view-multi" class="char-btn" type="button" title="View multiple chapters at once">Multi</button>
-                                <select id="writing-multi-add-chapter" class="link-dropdown" style="display:none; min-width: 220px;">
-                                    <option value="">+ Add chapter…</option>
-                                </select>
-                                <button id="writing-multi-clear" class="char-btn" type="button" style="display:none;">Clear</button>
-                                <button id="writing-chapter-add-scene" class="char-btn" type="button">+ Scene</button>
-                            </div>
-                        </div>
-                        <div id="writing-multi-chips" style="display:none; margin-top: 10px;"></div>
-                        <div id="writing-chapter-content" style="margin-top: 12px;"></div>
-                    </div>
-
                     <!-- Timeline View -->
                     <div id="timeline-view" class="view hidden"></div>
 
@@ -3472,140 +3434,6 @@
                 </div>
             </div>
             
-            <!-- Writing Metadata -->
-            <div id="writing-meta" class="view hidden">
-                <h3>Writing</h3>
-
-                <div id="writing-meta-kind" class="char-help" style="margin: 0 0 12px 0;">No selection</div>
-
-                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom: 12px;">
-                    <button id="writing-btn-compile" class="char-btn primary" type="button">Compile</button>
-                    <button id="writing-btn-focus" class="char-btn" type="button">Focus Mode</button>
-                    <button id="writing-btn-chapter-board" class="char-btn" type="button" style="display:none;">Chapter Board</button>
-                    <button id="writing-btn-open-corkboard" class="char-btn" type="button" style="display:none;">Corkboard</button>
-                    <button id="writing-btn-open-outline" class="char-btn" type="button" style="display:none;">Outline</button>
-                    <button id="writing-btn-snapshot" class="char-btn" type="button">Snapshot</button>
-                    <button id="writing-btn-compare" class="char-btn" type="button">Compare</button>
-                    <button id="writing-btn-show-timeline" class="char-btn" type="button">Show on Timeline</button>
-                    <button id="writing-btn-tools" class="char-btn" type="button">Tools</button>
-                </div>
-
-                <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom: 12px;">
-                    <select id="writing-snapshot-select" class="link-dropdown" style="min-width: 220px;">
-                        <option value="">Restore snapshot…</option>
-                    </select>
-                    <button id="writing-btn-restore-snapshot" class="char-btn" type="button">Restore</button>
-                </div>
-
-                <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin: 0 0 8px 0;">
-                    <div id="writing-wordcount" class="char-help">Words: 0</div>
-                    <div id="writing-daily-progress" class="char-help">Today: 0 / 0</div>
-                </div>
-                <div id="writing-stats" style="margin: 0 0 14px 0;"></div>
-                <div class="char-field" style="margin-bottom: 16px;">
-                    <label>Daily goal (words)</label>
-                    <input id="writing-daily-goal" type="number" min="0" step="50" class="modal-input" placeholder="e.g., 1000">
-                </div>
-
-                <div id="writing-scene-fields">
-                    <h4 style="margin: 0 0 10px 0;">Scene</h4>
-                    <div id="writing-scene-chapter-nav" class="char-help" style="margin: -6px 0 10px 0; display:none;"></div>
-                    <div class="char-field">
-                        <label>Status</label>
-                        <select id="writing-status" class="modal-input">
-                            <option value="draft">Draft</option>
-                            <option value="revise">Revise</option>
-                            <option value="final">Final</option>
-                        </select>
-                    </div>
-                    <div class="char-field">
-                        <label>Synopsis</label>
-                        <textarea id="writing-synopsis" rows="4" class="modal-input" placeholder="Short summary for corkboard/outliner…"></textarea>
-                    </div>
-                    <div class="char-field">
-                        <label>POV</label>
-                        <input id="writing-pov" type="text" class="modal-input" placeholder="e.g., Alice">
-                    </div>
-                    <div class="char-field">
-                        <label>Location</label>
-                        <input id="writing-location" type="text" class="modal-input" placeholder="e.g., Harbor District">
-                    </div>
-                    <div class="char-field">
-                        <label>Timeline date (optional)</label>
-                        <input id="writing-timeline-date" type="date" class="modal-input">
-                        <div class="char-help" style="margin-top:6px;">Used for outlining and compile ordering checks (optional).</div>
-                    </div>
-                    <div class="char-field">
-                        <label>Labels (comma-separated)</label>
-                        <input id="writing-labels" type="text" class="modal-input" placeholder="e.g., Action, Romance">
-                    </div>
-                    <div class="char-field">
-                        <label>Target words</label>
-                        <input id="writing-target-words" type="number" min="0" step="50" class="modal-input" placeholder="e.g., 1500">
-                    </div>
-
-                    <h4 style="margin: 16px 0 10px 0;">Insert Link</h4>
-                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <select id="writing-insert-link-type" class="link-dropdown" style="min-width: 120px;">
-                            <option value="character">Character</option>
-                            <option value="topic">Topic</option>
-                            <option value="event">Event</option>
-                            <option value="map">Map</option>
-                        </select>
-                        <select id="writing-insert-link-item" class="link-dropdown" style="min-width: 220px;">
-                            <option value="">Select item…</option>
-                        </select>
-                        <button id="writing-btn-insert-link" class="char-btn" type="button">Insert</button>
-                    </div>
-                    <div class="char-help" style="margin-top: 8px;">Inserts an internal link at the cursor in the current scene.</div>
-
-                    <h4 style="margin: 16px 0 10px 0;">Research Links</h4>
-
-                    <label>Linked Characters</label>
-                    <div id="writing-link-characters" class="link-list"></div>
-                    <select id="add-writing-link-character" class="link-dropdown">
-                        <option value="">+ Add Character</option>
-                    </select>
-
-                    <label>Linked Topics</label>
-                    <div id="writing-link-topics" class="link-list"></div>
-                    <select id="add-writing-link-topic" class="link-dropdown">
-                        <option value="">+ Add Topic</option>
-                    </select>
-
-                    <label>Linked Maps</label>
-                    <div id="writing-link-maps" class="link-list"></div>
-                    <select id="add-writing-link-map" class="link-dropdown">
-                        <option value="">+ Add Map</option>
-                    </select>
-
-                    <label>Linked Markers</label>
-                    <div id="writing-link-markers" class="link-list"></div>
-                    <select id="add-writing-link-marker" class="link-dropdown">
-                        <option value="">+ Add Marker</option>
-                    </select>
-
-                    <label>Linked Timeline Events</label>
-                    <div id="writing-link-events" class="link-list"></div>
-                    <select id="add-writing-link-event" class="link-dropdown">
-                        <option value="">+ Add Event</option>
-                    </select>
-
-                    <label>Linked Writings</label>
-                    <div id="writing-link-writings" class="link-list"></div>
-
-                    <div class="backlinks-section" style="margin-top: 20px;">
-                        <h4>🔗 Referenced In</h4>
-                        <div id="writing-backlinks"></div>
-                    </div>
-
-                    <div id="writing-smart-suggestions-panel" class="smart-suggestions-panel" style="display:none; margin-top: 20px;">
-                        <h4>💡 Smart Suggestions</h4>
-                        <div id="writing-smart-suggestions-list"></div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Character Metadata -->
             <div id="character-meta" class="view hidden">
                 <div id="character-editor">
@@ -4168,11 +3996,10 @@
                     <label style="display:block; margin-bottom:4px;">Recall mode</label>
                     <select id="ai-assistant-scope" class="modal-input">
                         <option value="auto" selected>Auto</option>
-                        <option value="writing-deep">Writing Deep Search</option>
                         <option value="whole-project">Whole Project</option>
                     </select>
                 </div>
-                <div class="char-help">`Writing Deep Search` prioritizes scenes, chapter context, and more writing matches before answering.</div>
+                <div class="char-help">`Auto` uses the current world context first, while `Whole Project` searches more broadly.</div>
             </div>
 
             <div style="display:grid; grid-template-columns: minmax(0, 1.6fr) minmax(320px, 0.9fr); gap: 12px;">
@@ -4214,260 +4041,6 @@
                     <div id="ai-memory-list" style="max-height: 44vh; overflow:auto; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); padding: 10px;">
                         <div class="empty">No memories saved yet.</div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Writing Compile Modal -->
-    <div id="writing-compile-modal" class="modal" onclick="if(event.target === this) closeWritingCompileModal()">
-        <div class="modal-content" style="max-width: 980px; width: 96%;">
-            <div class="modal-title">Compile Writing</div>
-            <div class="char-help" style="margin-top:-6px; margin-bottom: 10px;">Export your manuscript as HTML, DOCX, or PDF.</div>
-
-            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; align-items:end;">
-                <div>
-                    <label style="display:block; margin-bottom:4px;">Format</label>
-                    <select id="writing-compile-format" class="modal-input">
-                        <option value="docx" selected>DOCX</option>
-                        <option value="pdf">PDF</option>
-                        <option value="html">HTML</option>
-                    </select>
-                </div>
-                <div>
-                    <label style="display:block; margin-bottom:4px;">Options</label>
-                    <label style="display:flex; gap:8px; align-items:center; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; background: var(--bg-secondary);">
-                        <input id="writing-compile-include-chapter-headings" type="checkbox" checked>
-                        <span>Include chapter headings</span>
-                    </label>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 10px;">
-                <label style="display:block; margin-bottom:4px;">Scope</label>
-                <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <label style="display:flex; gap:8px; align-items:center;">
-                        <input type="radio" name="writing-compile-scope" value="project" checked>
-                        <span>Entire project</span>
-                    </label>
-                    <label style="display:flex; gap:8px; align-items:center;">
-                        <input type="radio" name="writing-compile-scope" value="chapter">
-                        <span>Current chapter</span>
-                    </label>
-                    <label style="display:flex; gap:8px; align-items:center;">
-                        <input type="radio" name="writing-compile-scope" value="selection">
-                        <span>Custom selection</span>
-                    </label>
-                </div>
-            </div>
-
-            <div id="writing-compile-selection" style="display:none; border:1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); padding: 10px; max-height: 46vh; overflow:auto; margin-bottom: 10px;">
-                <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom: 10px;">
-                    <div style="font-weight:700;">Select chapters/scenes</div>
-                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <button id="writing-compile-select-all" class="modal-btn" type="button">Select all</button>
-                        <button id="writing-compile-select-none" class="modal-btn" type="button">Select none</button>
-                    </div>
-                </div>
-                <div id="writing-compile-tree"></div>
-                <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border-color);">
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom: 6px;">
-                        <div style="font-weight:700;">Compile order</div>
-                        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                            <button id="writing-compile-reset-order" class="modal-btn" type="button">Reset to binder order</button>
-                        </div>
-                    </div>
-                    <div class="char-help" style="margin-bottom: 10px;">Drag scenes to reorder the exported manuscript. This order is independent of the binder.</div>
-                    <div id="writing-compile-order"></div>
-                </div>
-            </div>
-
-            <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-                <button id="writing-compile-run" class="modal-btn primary" type="button">Compile</button>
-                <button class="modal-btn" type="button" onclick="closeWritingCompileModal()">Close</button>
-                <div id="writing-compile-status" class="char-help" style="margin-left:auto;">Idle</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Writing Snapshot Compare Modal -->
-    <div id="writing-snapshot-modal" class="modal" onclick="if(event.target === this) closeWritingSnapshotModal()">
-        <div class="modal-content" style="max-width: 980px; width: 96%;">
-            <div class="modal-title">Scene Snapshots</div>
-            <div class="char-help" style="margin-top:-6px; margin-bottom: 10px;">Compare the current scene to a snapshot, rename snapshots, or restore.</div>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:end; margin-bottom: 10px;">
-                <div style="flex: 1 1 280px;">
-                    <label style="display:block; margin-bottom:4px;">Snapshot</label>
-                    <select id="writing-snapshot-modal-select" class="modal-input" style="width:100%;">
-                        <option value="">Select snapshot…</option>
-                    </select>
-                </div>
-                <div style="flex: 1 1 220px;">
-                    <label style="display:block; margin-bottom:4px;">View</label>
-                    <select id="writing-snapshot-view-mode" class="modal-input" style="width:100%;">
-                        <option value="diff" selected>Diff</option>
-                        <option value="side">Side-by-side</option>
-                    </select>
-                </div>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                    <button id="writing-snapshot-rename" class="modal-btn" type="button">Rename</button>
-                    <button id="writing-snapshot-delete" class="modal-btn" type="button">Delete</button>
-                    <button id="writing-snapshot-restore" class="modal-btn primary" type="button">Restore</button>
-                    <button class="modal-btn" type="button" onclick="closeWritingSnapshotModal()">Close</button>
-                </div>
-            </div>
-
-            <div id="writing-snapshot-modal-body" style="max-height: 62vh; overflow:auto; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); padding: 10px;">
-                <div class="empty">Select a snapshot to compare.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Writing Tools Modal -->
-    <div id="writing-tools-modal" class="modal" onclick="if(event.target === this) closeWritingToolsModal()">
-        <div class="modal-content" style="max-width: 1100px; width: 96%;">
-            <div class="modal-title">Writing Tools</div>
-            <div class="char-help" style="margin-top:-6px; margin-bottom: 10px;">Typography, manuscript search/replace, project templates, and consistency tools.</div>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 10px;">
-                <button id="writing-tools-tab-typography" class="modal-btn primary" type="button">Typography</button>
-                <button id="writing-tools-tab-search" class="modal-btn" type="button">Manuscript Search</button>
-                <button id="writing-tools-tab-templates" class="modal-btn" type="button">Templates</button>
-                <button id="writing-tools-tab-consistency" class="modal-btn" type="button">Consistency</button>
-                <button class="modal-btn" type="button" onclick="closeWritingToolsModal()" style="margin-left:auto;">Close</button>
-            </div>
-
-            <div id="writing-tools-typography" style="display:block;">
-                <h3 style="margin: 0 0 10px 0;">Typography (saved in vault)</h3>
-                <div class="char-help" style="margin-bottom: 10px;">Applies to the Writing editor page layout.</div>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <div class="char-field">
-                        <label>Paper width (px)</label>
-                        <input id="writing-typo-width" type="number" class="modal-input" min="420" max="1600" step="10" placeholder="760">
-                    </div>
-                    <div class="char-field">
-                        <label>Paper padding (px)</label>
-                        <input id="writing-typo-padding" type="number" class="modal-input" min="20" max="220" step="2" placeholder="84">
-                    </div>
-                    <div class="char-field">
-                        <label>Font size (px)</label>
-                        <input id="writing-typo-font-size" type="number" class="modal-input" min="10" max="34" step="1" placeholder="16">
-                    </div>
-                    <div class="char-field">
-                        <label>Line height</label>
-                        <input id="writing-typo-line-height" type="number" class="modal-input" min="1.1" max="2.4" step="0.05" placeholder="1.75">
-                    </div>
-                    <div class="char-field">
-                        <label>Paragraph spacing (px)</label>
-                        <input id="writing-typo-paragraph-spacing" type="number" class="modal-input" min="0" max="80" step="1" placeholder="0">
-                    </div>
-                    <div class="char-field">
-                        <label>First-line indent (px)</label>
-                        <input id="writing-typo-first-indent" type="number" class="modal-input" min="0" max="120" step="1" placeholder="28">
-                    </div>
-                    <div class="char-field">
-                        <label>Paragraph indent (px)</label>
-                        <input id="writing-typo-paragraph-indent" type="number" class="modal-input" min="0" max="220" step="1" placeholder="0">
-                    </div>
-                    <div class="char-field" style="grid-column: 1 / -1;">
-                        <label>Font family (CSS)</label>
-                        <input id="writing-typo-font-family" type="text" class="modal-input" placeholder='e.g., Georgia, "Times New Roman", serif'>
-                    </div>
-                </div>
-                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px;">
-                    <button id="writing-typo-save" class="modal-btn primary" type="button">Save</button>
-                    <button id="writing-typo-reset" class="modal-btn" type="button">Reset</button>
-                </div>
-            </div>
-
-            <div id="writing-tools-search" style="display:none;">
-                <h3 style="margin: 0 0 10px 0;">Global Manuscript Search/Replace</h3>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-                    <div>
-                        <label style="display:block; margin-bottom:4px;">Find</label>
-                        <input id="writing-search-find" type="text" class="modal-input" placeholder="Text to find">
-                    </div>
-                    <div>
-                        <label style="display:block; margin-bottom:4px;">Replace with</label>
-                        <input id="writing-search-replace" type="text" class="modal-input" placeholder="Replacement">
-                    </div>
-                </div>
-                <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom: 10px;">
-                    <label style="display:flex; gap:8px; align-items:center;"><input id="writing-search-case" type="checkbox"> Case sensitive</label>
-                    <label style="display:flex; gap:8px; align-items:center;"><input id="writing-search-whole" type="checkbox"> Whole word</label>
-                    <label style="display:flex; gap:8px; align-items:center;"><input id="writing-search-regex" type="checkbox"> Regex</label>
-                    <button id="writing-search-run" class="modal-btn primary" type="button">Search</button>
-                    <button id="writing-search-replace-checked" class="modal-btn" type="button">Replace Checked</button>
-                    <button id="writing-search-replace-all" class="modal-btn" type="button">Replace All</button>
-                    <div id="writing-search-status" class="char-help" style="margin-left:auto;">Idle</div>
-                </div>
-                <div id="writing-search-results" style="max-height: 52vh; overflow:auto; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); padding: 10px;">
-                    <div class="empty">Run a search to see results.</div>
-                </div>
-            </div>
-
-            <div id="writing-tools-consistency" style="display:none;">
-                <h3 style="margin: 0 0 10px 0;">Consistency Check (beta)</h3>
-                <div class="char-help" style="margin-bottom: 10px;">Find likely contradictions like “did” vs “didn’t” across your draft. Best results when your characters are named consistently.</div>
-                <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom: 10px;">
-                    <div style="display:flex; gap:8px; align-items:center;">
-                        <span class="char-help" style="min-width: 52px;">Scope</span>
-                        <select id="writing-consistency-scope" class="modal-input" style="min-width: 220px;">
-                            <option value="project">Entire project</option>
-                            <option value="chapter">Current chapter</option>
-                            <option value="scene">Current scene</option>
-                        </select>
-                    </div>
-                    <button id="writing-consistency-run" class="modal-btn" type="button" title="Fast, heuristic check (no AI)">Quick Check</button>
-                    <button id="writing-consistency-run-ai" class="modal-btn primary" type="button" title="Uses your local GGUF model to extract claims and detect contradictions">AI Check</button>
-                    <div id="writing-consistency-status" class="char-help" style="margin-left:auto;">Idle</div>
-                </div>
-                <div id="writing-consistency-results" style="max-height: 52vh; overflow:auto; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-secondary); padding: 10px;">
-                    <div class="empty">Run a check to see warnings.</div>
-                </div>
-            </div>
-
-            <div id="writing-tools-templates" style="display:none;">
-                <h3 style="margin: 0 0 10px 0;">Project Templates / Defaults (saved in vault)</h3>
-                <div class="char-help" style="margin-bottom: 10px;">Used when creating new scenes. You can also apply the template to an existing scene.</div>
-
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                    <div class="char-field">
-                        <label>Default status</label>
-                        <select id="writing-template-status" class="modal-input">
-                            <option value="draft">Draft</option>
-                            <option value="revise">Revise</option>
-                            <option value="final">Final</option>
-                        </select>
-                    </div>
-                    <div class="char-field">
-                        <label>Default target words</label>
-                        <input id="writing-template-target" type="number" class="modal-input" min="0" step="50" placeholder="e.g., 1500">
-                    </div>
-                    <div class="char-field">
-                        <label>Default POV</label>
-                        <input id="writing-template-pov" type="text" class="modal-input" placeholder="e.g., Alice">
-                    </div>
-                    <div class="char-field">
-                        <label>Default location</label>
-                        <input id="writing-template-location" type="text" class="modal-input" placeholder="e.g., Harbor District">
-                    </div>
-                    <div class="char-field" style="grid-column: 1 / -1;">
-                        <label>Default labels (comma-separated)</label>
-                        <input id="writing-template-labels" type="text" class="modal-input" placeholder="e.g., Action, Romance">
-                    </div>
-                    <div class="char-field" style="grid-column: 1 / -1;">
-                        <label>Scene content template (HTML)</label>
-                        <textarea id="writing-template-html" class="modal-input" rows="8" placeholder="<p>Start here…</p>"></textarea>
-                    </div>
-                </div>
-
-                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px;">
-                    <button id="writing-template-save" class="modal-btn primary" type="button">Save Defaults</button>
-                    <button id="writing-template-apply" class="modal-btn" type="button">Apply to Current Scene</button>
-                    <button id="writing-template-from-scene" class="modal-btn" type="button">Use Current Scene as Template</button>
-                    <button id="writing-template-reset" class="modal-btn" type="button">Reset</button>
                 </div>
             </div>
         </div>
@@ -4703,13 +4276,12 @@
     } catch (_) {}
 
 	    const UIState = {
-	        category: "topics",     // topics | writing | characters | timeline | maps
+	        category: "topics",     // topics | characters | timeline | maps
 	        selectedItemId: null,   // ID of selected tree node
-	        selectedItemType: null, // topic | writing | character | event | map | marker
+	        selectedItemType: null, // topic | character | event | map | marker
 	        selectedMarkerId: null, // ID of selected marker when viewing a map
         activeCharTab: "overview",
         expandedTopics: {},      // Track which topics are expanded
-        expandedWriting: {},     // Track which writing folders are expanded
         writingChapterView: "cards", // cards | chapterOutline | bookOutline (back-compat: corkboard|outline)
         writingChapterBoardMode: "single", // single | multi
         writingMultiChapterIds: [], // [chapterId,...] for multi-board
@@ -4756,8 +4328,6 @@
                 projectTitle: "",
             },
             topics: {},
-            writing: {},
-            writingConfig: {},
             characters: {},
             events: {},
             maps: {}
@@ -4777,8 +4347,6 @@
         return {
             meta: (source.meta && typeof source.meta === "object") ? source.meta : { projectTitle: "" },
             topics: (source.topics && typeof source.topics === "object") ? source.topics : {},
-            writing: (source.writing && typeof source.writing === "object") ? source.writing : {},
-            writingConfig: (source.writingConfig && typeof source.writingConfig === "object") ? source.writingConfig : {},
             characters: (source.characters && typeof source.characters === "object") ? source.characters : {},
             events: (source.events && typeof source.events === "object") ? source.events : {},
             maps: (source.maps && typeof source.maps === "object") ? source.maps : {}
@@ -4787,6 +4355,28 @@
 
     // global container for all loaded/saved entities
     let worldData = createEmptyWorldData();
+
+    function removeLegacyWritingUi() {
+        const removeIds = [
+            "writing-chapter-view",
+            "writing-meta",
+            "writing-compile-modal",
+            "writing-snapshot-modal",
+            "writing-tools-modal",
+            "writing-exit-focus",
+            "writing-link-writings",
+            "event-link-writings",
+            "add-link-writing"
+        ];
+        removeIds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const label = el.previousElementSibling;
+            if (label && label.tagName === "LABEL") label.remove();
+            el.remove();
+        });
+        document.querySelectorAll('[data-action="add-writing-scene"], [data-action="add-writing-chapter"]').forEach((el) => el.remove());
+    }
 
     function coerceTitleString(value) {
         // Titles should always be plain strings. If a Promise (or previous buggy serialization)
@@ -4806,12 +4396,7 @@
     }
 
     function ensureWritingConfig() {
-        if (!worldData || typeof worldData !== "object") worldData = createEmptyWorldData();
-        if (!worldData.writingConfig || typeof worldData.writingConfig !== "object") worldData.writingConfig = {};
-        // Normalize title fields if present (older builds could save a non-string).
-        worldData.writingConfig.manuscriptTitle = coerceTitleString(worldData.writingConfig.manuscriptTitle);
-        worldData.writingConfig.bookTitle = coerceTitleString(worldData.writingConfig.bookTitle);
-        return worldData.writingConfig;
+        return {};
     }
 
     function computeDefaultProjectTitle() {
@@ -4853,7 +4438,6 @@
     function getEditorTabItem(itemType, itemId) {
         if (!itemId || !isSharedEditorItemType(itemType)) return null;
         if (itemType === "topic") return (worldData.topics || {})[itemId] || null;
-        if (itemType === "writing") return (worldData.writing || {})[itemId] || null;
         return null;
     }
 
@@ -5165,7 +4749,6 @@
             selectedMarkerId: UIState.selectedMarkerId,
             activeCharTab: UIState.activeCharTab,
             expandedTopics: UIState.expandedTopics,
-            expandedWriting: UIState.expandedWriting,
             writingChapterView: UIState.writingChapterView,
             writingChapterBoardMode: UIState.writingChapterBoardMode,
             writingMultiChapterIds: UIState.writingMultiChapterIds,
@@ -5177,7 +4760,6 @@
             selectedMarkerId: null,
             activeCharTab: "overview",
             expandedTopics: {},
-            expandedWriting: {},
             writingChapterView: "cards",
             writingChapterBoardMode: "single",
             writingMultiChapterIds: [],
@@ -5276,7 +4858,6 @@
                 UIState.selectedMarkerId = restoredUI.selectedMarkerId || null;
                 UIState.activeCharTab = restoredUI.activeCharTab || "overview";
                 UIState.expandedTopics = cloneSerializable(restoredUI.expandedTopics, {});
-                UIState.expandedWriting = cloneSerializable(restoredUI.expandedWriting, {});
                 UIState.writingChapterView = restoredUI.writingChapterView || "cards";
                 UIState.writingChapterBoardMode = restoredUI.writingChapterBoardMode || "single";
                 UIState.writingMultiChapterIds = Array.isArray(restoredUI.writingMultiChapterIds) ? restoredUI.writingMultiChapterIds.slice() : [];
@@ -5470,7 +5051,6 @@
 
         const sources = [
             { category: "topics", itemType: "topic", map: worldData.topics || {} },
-            { category: "writing", itemType: "writing", map: worldData.writing || {} },
             { category: "characters", itemType: "character", map: worldData.characters || {} },
             { category: "events", itemType: "event", map: worldData.events || {} },
             { category: "maps", itemType: "map", map: worldData.maps || {} }
@@ -5527,9 +5107,7 @@
 
     function getScopedIndexEntries() {
         const scope = document.getElementById("find-replace-scope")?.value || "vault";
-        // Writing now lives inside the Topics tab. For index scoping we want the "effective" category.
-        const effectiveCategory = (UIState.selectedItemType === "writing") ? "writing" : UIState.category;
-        const currentCategory = normalizeIndexCategory(effectiveCategory);
+        const currentCategory = normalizeIndexCategory(UIState.category);
         const currentItemId = UIState.selectedItemId;
         if (scope === "category") {
             return vaultTextIndex.filter((entry) => entry.category === currentCategory);
@@ -8225,7 +7803,6 @@
         });
         return {
             topics: Object.keys(worldData.topics || {}).length,
-            writing: Object.keys(worldData.writing || {}).length,
             characters: Object.keys(worldData.characters || {}).length,
             events: Object.keys(worldData.events || {}).length,
             maps: Object.keys(worldData.maps || {}).length,
@@ -8289,7 +7866,6 @@
         };
 
         Object.values(worldData.topics || {}).forEach((item) => pushCandidate("topic", item.id, item));
-        Object.values(worldData.writing || {}).forEach((item) => pushCandidate("writing", item.id, item, `${item.synopsis || ""} ${item.location || ""} ${item.pov || ""}`));
         Object.values(worldData.characters || {}).forEach((item) => pushCandidate("character", item.id, item, `${item.race || ""} ${item.class || ""}`));
         Object.values(worldData.events || {}).forEach((item) => pushCandidate("event", item.id, item, `${item.date || ""} ${item.category || ""}`));
         Object.values(worldData.maps || {}).forEach((item) => {
@@ -8321,11 +7897,6 @@
     }
 
     function aiMakeSourceLabel(itemType, item, extra = {}) {
-        if (itemType === "writing") {
-            const chapterName = extra.chapterName || "";
-            const base = item?.name || "Untitled Scene";
-            return chapterName ? `Writing: ${chapterName} / ${base}` : `Writing: ${base}`;
-        }
         if (itemType === "marker") {
             return extra.mapName ? `Marker: ${extra.mapName} / ${item?.name || "Marker"}` : `Marker: ${item?.name || "Marker"}`;
         }
@@ -8353,10 +7924,6 @@
         const item = aiGetItemByTypeAndId(itemType, itemId);
         if (!item) return null;
         const extra = {};
-        if (itemType === "writing") {
-            const chapter = item.kind === "scene" ? getWritingChapterForScene(item) : null;
-            extra.chapterName = chapter ? (chapter.name || "Untitled Chapter") : "";
-        }
         return {
             label: aiMakeSourceLabel(itemType, item, extra),
             itemType,
@@ -8374,39 +7941,8 @@
         };
     }
 
-    function aiBuildWritingDeepSources(prompt) {
-        const hits = aiSearchVault(prompt, AI_ASSISTANT_LIMITS.writingDeepHitCount, { types: ["writing"] });
-        const seen = new Set();
-        const sources = [];
-        const current = UIState.selectedItemType === "writing" && UIState.selectedItemId
-            ? (worldData.writing || {})[UIState.selectedItemId]
-            : null;
-        if (current) {
-            seen.add(current.id);
-            const currentEntry = aiBuildSourceEntry("writing", current.id);
-            if (currentEntry) sources.push(currentEntry);
-            const chapter = current.kind === "scene" ? getWritingChapterForScene(current) : current;
-            if (chapter && chapter.id && !seen.has(chapter.id)) {
-                seen.add(chapter.id);
-                const chapterEntry = aiBuildSourceEntry("writing", chapter.id);
-                if (chapterEntry) sources.push(chapterEntry);
-            }
-        }
-        hits.forEach((hit) => {
-            if (seen.has(hit.itemId)) return;
-            seen.add(hit.itemId);
-            const entry = aiBuildSourceEntry("writing", hit.itemId);
-            if (!entry) return;
-            sources.push(entry);
-            const node = (worldData.writing || {})[hit.itemId];
-            const chapter = node && node.kind === "scene" ? getWritingChapterForScene(node) : null;
-            if (chapter && !seen.has(chapter.id)) {
-                seen.add(chapter.id);
-                const chapterEntry = aiBuildSourceEntry("writing", chapter.id);
-                if (chapterEntry) sources.push(chapterEntry);
-            }
-        });
-        return sources.slice(0, AI_ASSISTANT_LIMITS.writingDeepSourceCount);
+    function aiBuildWritingDeepSources() {
+        return [];
     }
 
     function aiBuildProjectSources(prompt, scope) {
@@ -10017,7 +9553,7 @@ function hideAllViews() {
 
         // Hide metadata panels
         document.getElementById("topic-meta").classList.add("hidden");
-        document.getElementById("writing-meta").classList.add("hidden");
+        document.getElementById("writing-meta")?.classList.add("hidden");
         document.getElementById("character-meta").classList.add("hidden");
         document.getElementById("event-meta").classList.add("hidden");
         document.getElementById("map-meta").classList.add("hidden");
@@ -12880,6 +12416,9 @@ function refreshWritingInsertLinkDropdown() {
     }
 
     async function runWritingCompileFromModal() {
+        setWritingCompileStatus("Unavailable");
+        alert("The legacy writing compile workflow has been removed from this build.");
+        return;
         try { if (typeof syncEditorToData === "function") syncEditorToData(); } catch (_) {}
 
         const format = String(document.getElementById("writing-compile-format")?.value || "docx").toLowerCase();
@@ -12927,16 +12466,8 @@ function refreshWritingInsertLinkDropdown() {
             }
         }
 
-        setWritingCompileStatus("Compiling…");
-        const result = await window.elyriaAPI.compileWriting({
-            format,
-            scope,
-            chapterId,
-            selectedIds,
-            orderedSceneIds,
-            includeChapterHeadings,
-            data: worldData
-        });
+        setWritingCompileStatus("Unavailable");
+        const result = { success: false, error: "Removed" };
         if (result && result.cancelled) {
             setWritingCompileStatus("Cancelled");
             return;
@@ -14267,8 +13798,6 @@ function refreshWritingInsertLinkDropdown() {
             // Already in new format
             worldData.meta = (vaultData.meta && typeof vaultData.meta === "object") ? vaultData.meta : { projectTitle: "" };
             worldData.topics = vaultData.topics || {};
-            worldData.writing = vaultData.writing || {};
-            worldData.writingConfig = (vaultData.writingConfig && typeof vaultData.writingConfig === "object") ? vaultData.writingConfig : {};
             worldData.characters = vaultData.characters || {};
             worldData.events = vaultData.events || {};
             worldData.maps = vaultData.maps || {};
@@ -14277,18 +13806,13 @@ function refreshWritingInsertLinkDropdown() {
             const migrated = migrateVault(vaultData);
             worldData.meta = (migrated.meta && typeof migrated.meta === "object") ? migrated.meta : { projectTitle: "" };
             worldData.topics = migrated.topics;
-            worldData.writing = migrated.writing || {};
-            worldData.writingConfig = (migrated.writingConfig && typeof migrated.writingConfig === "object") ? migrated.writingConfig : {};
             worldData.characters = migrated.characters;
             worldData.events = migrated.events;
             worldData.maps = migrated.maps;
         }
 
         // Normalize titles (older builds could persist "[object Promise]" if a Promise leaked into titles).
-        try {
-            ensureWorldMeta();
-            ensureWritingConfig();
-        } catch (_) {}
+        try { ensureWorldMeta(); } catch (_) {}
         
 	        // Ensure all topics have order fields
 	        ensureTopicOrders();
@@ -14317,19 +13841,10 @@ function refreshWritingInsertLinkDropdown() {
 	            UIState.category = "topics";
 	            UIState.selectedItemId = topics[0].id;
 	            UIState.selectedItemType = "topic";
-	        } else {
-                // If there are no topics yet but writing exists, open the first writing node.
-                const roots = Object.values(worldData.writing || {}).filter(n => !n.parentId);
-                if (roots.length > 0) {
-                    roots.sort((a, b) => (a.order || 0) - (b.order || 0));
-                    UIState.category = "topics";
-                    UIState.selectedItemId = roots[0].id;
-                    UIState.selectedItemType = "writing";
-                } else {
-                    UIState.category = "topics";
-                    UIState.selectedItemId = null;
-                    UIState.selectedItemType = null;
-                }
+        } else {
+                UIState.category = "topics";
+                UIState.selectedItemId = null;
+                UIState.selectedItemType = null;
 	        }
 	        
             UIState.openEditorTabs = [];
@@ -14341,10 +13856,6 @@ function refreshWritingInsertLinkDropdown() {
         vaultTextIndexDirty = true;
         vaultTextIndex = [];
         updateFindReplaceIndexStatus();
-        // Build writing word-count baselines incrementally so chapter/compile stats don't freeze,
-        // but delay so it can't compete with the first editor load.
-        try { scheduleWritingWordCountIndexBuild({ maxPerChunk: 1, delayMs: 1500 }); } catch (_) {}
-
         // After a vault load, aggressively restore editor writability/focus (packaged builds can lose typing).
         try {
             setTimeout(() => {
@@ -14388,35 +13899,7 @@ function refreshWritingInsertLinkDropdown() {
             if (!Array.isArray(topic.links.maps)) topic.links.maps = [];
             if (!Array.isArray(topic.links.markers)) topic.links.markers = [];
             if (!Array.isArray(topic.links.events)) topic.links.events = [];
-        });
-
-        Object.values(worldData.writing || {}).forEach(node => {
-            if (!node.type) node.type = "writing";
-            if (node.kind !== "chapter" && node.kind !== "scene") {
-                // Backward compat: older writing nodes used folder/doc.
-                if (node.kind === "folder") node.kind = "chapter";
-                else node.kind = "scene";
-            }
-            if (!node.name) node.name = "Untitled";
-            if (node.kind === "chapter") {
-                if (!node.outline || typeof node.outline !== "object") node.outline = {};
-                if (!Array.isArray(node.outline.items)) node.outline.items = [];
-            }
-            if (node.kind === "scene") {
-                if (typeof node.content !== "string") node.content = "";
-                if (typeof node.synopsis !== "string") node.synopsis = "";
-                if (!node.meta || typeof node.meta !== "object") node.meta = {};
-                if (!node.meta.status) node.meta.status = "draft";
-                if (typeof node.meta.pov !== "string") node.meta.pov = "";
-                if (typeof node.meta.location !== "string") node.meta.location = "";
-                if (!Array.isArray(node.meta.labels)) node.meta.labels = [];
-                if (!("targetWords" in node.meta)) node.meta.targetWords = null;
-                if (!Array.isArray(node.snapshots)) node.snapshots = [];
-            }
-            if (!node.links) node.links = {};
-            ensureItemLinkBuckets(node);
-            if (!("parentId" in node)) node.parentId = null;
-            if (!("order" in node)) node.order = 0;
+            topic.links.writings = [];
         });
         
         // Ensure events have all required fields
@@ -14435,7 +13918,7 @@ function refreshWritingInsertLinkDropdown() {
             if (!Array.isArray(event.links.maps)) event.links.maps = [];
             if (!Array.isArray(event.links.markers)) event.links.markers = [];
             if (!Array.isArray(event.links.events)) event.links.events = [];
-            if (!Array.isArray(event.links.writings)) event.links.writings = [];
+            event.links.writings = [];
         });
         
         // Ensure maps have all required fields
@@ -14447,6 +13930,7 @@ function refreshWritingInsertLinkDropdown() {
             if (!Array.isArray(map.links.maps)) map.links.maps = [];
             if (!Array.isArray(map.links.markers)) map.links.markers = [];
             if (!Array.isArray(map.links.events)) map.links.events = [];
+            map.links.writings = [];
             map.measureSettings = normalizeMeasureSettings(map.measureSettings);
         });
         
@@ -14465,15 +13949,14 @@ function refreshWritingInsertLinkDropdown() {
             ...Object.entries(worldData.characters).map(([id, item]) => ({ id, item, type: 'character' })),
             ...Object.entries(worldData.topics).map(([id, item]) => ({ id, item, type: 'topic' })),
             ...Object.entries(worldData.events).map(([id, item]) => ({ id, item, type: 'event' })),
-            ...Object.entries(worldData.maps).map(([id, item]) => ({ id, item, type: 'map' })),
-            ...Object.entries(worldData.writing || {}).map(([id, item]) => ({ id, item, type: 'writing' }))
+            ...Object.entries(worldData.maps).map(([id, item]) => ({ id, item, type: 'map' }))
         ];
         
         allItems.forEach(({ id, item, type }) => {
             if (!item.links) return;
             
             // Process each link type
-            ['characters', 'topics', 'events', 'maps', 'writings'].forEach(linkType => {
+            ['characters', 'topics', 'events', 'maps'].forEach(linkType => {
                 if (!item.links[linkType]) return;
                 
                 item.links[linkType].forEach(linkedId => {
@@ -14483,7 +13966,6 @@ function refreshWritingInsertLinkDropdown() {
                     else if (linkType === 'topics') linkedItem = worldData.topics[linkedId];
                     else if (linkType === 'events') linkedItem = worldData.events[linkedId];
                     else if (linkType === 'maps') linkedItem = worldData.maps[linkedId];
-                    else if (linkType === 'writings') linkedItem = worldData.writing && worldData.writing[linkedId];
                     
                     if (!linkedItem || !linkedItem.links) return;
                     
@@ -14533,6 +14015,7 @@ function refreshWritingInsertLinkDropdown() {
 	            return; // Silently return, don't warn
 	        }
 	        window._appInitialized = true;
+        removeLegacyWritingUi();
         populateTableLayoutPresetSelector();
         populateSavedTableLayoutSelector();
 
@@ -15930,11 +15413,10 @@ function refreshWritingInsertLinkDropdown() {
 	        const runMenuExport = async (scope, format) => {
 	            try {
 	                if (typeof syncEditorToData === 'function') syncEditorToData();
-	                const effectiveCategory = (UIState.selectedItemType === "writing") ? "writing" : UIState.category;
 	                const result = await window.elyriaAPI.exportContent({
 	                    scope,
 	                    format,
-	                    category: effectiveCategory,
+	                    category: UIState.category,
 	                    data: worldData
 	                });
                 if (result && result.cancelled) return;
@@ -16143,23 +15625,19 @@ function createTreeNode(item, depth) {
     }
 
     const isTopic = item.type === "topic";
-    const isWritingFolder = item.type === "writing" && item.kind === "chapter";
 
-    // Add expand/collapse icon for hierarchical trees (topics, writing folders)
-    if (isTopic || isWritingFolder) {
-        const hasChildren = isTopic
-            ? Object.values(worldData.topics).some(t => t.parentId === item.id)
-            : Object.values(worldData.writing || {}).some(n => n.parentId === item.id);
+    // Add expand/collapse icon for hierarchical topics.
+    if (isTopic) {
+        const hasChildren = Object.values(worldData.topics).some(t => t.parentId === item.id);
         const expandIcon = document.createElement("span");
         expandIcon.className = "tree-expand-icon" + (hasChildren ? "" : " empty");
         
         if (hasChildren) {
-            const expanded = isTopic ? UIState.expandedTopics[item.id] : UIState.expandedWriting[item.id];
+            const expanded = UIState.expandedTopics[item.id];
             expandIcon.textContent = expanded ? "▼" : "▶";
             expandIcon.addEventListener("click", (e) => {
                 e.stopPropagation();
-                if (isTopic) toggleTopicExpanded(item.id);
-                else toggleWritingExpanded(item.id);
+                toggleTopicExpanded(item.id);
             });
         }
         
@@ -16170,10 +15648,7 @@ function createTreeNode(item, depth) {
     const label = document.createElement("span");
     label.className = "tree-node-label";
     const baseName = item.name || [item.firstName, item.lastName].filter(Boolean).join(' ').trim() || 'Unnamed';
-    const prefix = (item.type === "writing")
-        ? (item.kind === "chapter" ? "📖 " : "📝 ")
-        : "";
-    label.textContent = prefix + baseName;
+    label.textContent = baseName;
     node.appendChild(label);
 
     // Left-click selects item - attach to the whole node, not just label
@@ -16193,7 +15668,7 @@ function createTreeNode(item, depth) {
                     UIState.navClickAt = window.__navPerf.clickAt;
                 } catch (_) {}
 	        } catch (_) {}
-	        // Always go through state so meta panels, writing tools, etc. stay in sync.
+	        // Always go through state so meta panels stay in sync.
             loadItem(item.id, item.type, { tabBehavior: "replace" });
 	    });
 
@@ -16204,8 +15679,8 @@ function createTreeNode(item, depth) {
         openContextMenu(e.pageX, e.pageY, item);
     });
 
-    // Add drag-and-drop for topics and writing binder nodes.
-    if (item.type === "topic" || item.type === "writing") {
+    // Add drag-and-drop for topics.
+    if (item.type === "topic") {
         node.setAttribute("draggable", "true");
         
         node.addEventListener("dragstart", (e) => {
@@ -16267,8 +15742,7 @@ function createTreeNode(item, depth) {
             }
             
             node.classList.remove("drag-over-top", "drag-over-bottom", "drag-over-inside");
-            if (item.type === "topic") handleTopicDrop(draggedId, item.id, position);
-            else handleWritingDrop(draggedId, item.id, position);
+            handleTopicDrop(draggedId, item.id, position);
         });
     }
 
@@ -16281,11 +15755,6 @@ function createTreeNode(item, depth) {
 function toggleTopicExpanded(topicId) {
     UIState.expandedTopics[topicId] = !UIState.expandedTopics[topicId];
     renderTreePreservingScroll("topic-toggle");
-}
-
-function toggleWritingExpanded(folderId) {
-    UIState.expandedWriting[folderId] = !UIState.expandedWriting[folderId];
-    renderTreePreservingScroll("writing-toggle");
 }
 
 /* ------------------------------------------------------------
@@ -19006,7 +18475,7 @@ function scheduleSmartSuggestions(itemId, itemType, plainText) {
 ------------------------------------------------------------ */
 function syncEditorToData() {
     const { selectedItemId, category, selectedItemType, activeCharTab } = UIState;
-    const effectiveCategory = (selectedItemType === "writing") ? "writing" : category;
+    const effectiveCategory = category;
     
     // Determine which editor to use based on context
     let ed = null;
@@ -19051,7 +18520,7 @@ function syncEditorToData() {
         }
         scheduleVaultSave();
     } else {
-        // For non-characters, use the effective category (writing lives inside Topics now).
+        // For non-characters, use the active category.
         switch (effectiveCategory) {
             case "topics": {
                 const topic = worldData.topics ? worldData.topics[selectedItemId] : null;
@@ -19087,23 +18556,6 @@ function syncEditorToData() {
                 }
                 map.content = content;
                 linksAdded = autoLinkEntities(selectedItemId, "map", content) || 0;
-                break;
-            }
-            case "writing": {
-                const node = worldData.writing ? worldData.writing[selectedItemId] : null;
-                if (!node || node.kind === "chapter") {
-                    scheduleVaultSave();
-                    return;
-                }
-                node.content = content;
-                linksAdded = autoLinkEntities(selectedItemId, "writing", content) || 0;
-                const _tempDiv = document.createElement('div');
-                _tempDiv.innerHTML = content;
-                const _plain = _tempDiv.textContent || _tempDiv.innerText || '';
-                scheduleSmartSuggestions(selectedItemId, 'writing', _plain);
-                // Cheap, incremental writing progress update (debounced).
-                scheduleWritingSceneProgressUpdate(selectedItemId, ed);
-                scheduleWritingFactExtraction(selectedItemId);
                 break;
             }
         }
@@ -22033,7 +21485,7 @@ function saveEventMetadata() {
 ============================================================ */
 function renderEventLinks(event) {
     if (!event.links) {
-        event.links = { characters: [], topics: [], maps: [], markers: [], events: [], writings: [] };
+        event.links = { characters: [], topics: [], maps: [], markers: [], events: [] };
     }
     renderLinkList(
         event.links.characters,
@@ -22063,13 +21515,6 @@ function renderEventLinks(event) {
         "marker"
     );
 
-    renderLinkList(
-        event.links.writings,
-        "event-link-writings",
-        worldData.writing || {},
-        "writing"
-    );
-
     // Populate dropdowns after rendering links
     populateEventLinkDropdowns(event);
 }
@@ -22079,18 +21524,16 @@ function renderEventLinks(event) {
 ------------------------------------------------------------ */
 function populateEventLinkDropdowns(event) {
     // Ensure all link arrays exist
-    if (!event.links) event.links = { characters: [], topics: [], maps: [], markers: [], events: [], writings: [] };
+    if (!event.links) event.links = { characters: [], topics: [], maps: [], markers: [], events: [] };
     if (!event.links.characters) event.links.characters = [];
     if (!event.links.topics) event.links.topics = [];
     if (!event.links.maps) event.links.maps = [];
     if (!event.links.markers) event.links.markers = [];
     if (!event.links.events) event.links.events = [];
-    if (!event.links.writings) event.links.writings = [];
     populateLinkDropdown('add-link-character', worldData.characters, event.links.characters, "character");
     populateLinkDropdown('add-link-topic', worldData.topics, event.links.topics, "topic");
     populateLinkDropdown('add-link-map', worldData.maps, event.links.maps, "map");
     populateLinkDropdown('add-link-marker', getAllMarkers(), event.links.markers, "marker");
-    populateLinkDropdown('add-link-writing', worldData.writing || {}, event.links.writings, "writing");
 }
 
 /* ------------------------------------------------------------
@@ -22272,9 +21715,8 @@ function renderItemLinks(itemId, itemType) {
 
     // Ensure links object exists for legacy items
     if (!item.links) {
-        item.links = { characters: [], topics: [], maps: [], markers: [], events: [], writings: [] };
+        item.links = { characters: [], topics: [], maps: [], markers: [], events: [] };
     }
-    if (!Array.isArray(item.links.writings)) item.links.writings = [];
 
     const prefix = itemType === "event"
         ? "event"
@@ -22282,9 +21724,7 @@ function renderItemLinks(itemId, itemType) {
             ? "character"
             : itemType === "topic"
                 ? "topic"
-                : itemType === "writing"
-                    ? "writing"
-                    : "map";
+                : "map";
     
     renderLinkList(
         item.links.characters,
@@ -22321,13 +21761,6 @@ function renderItemLinks(itemId, itemType) {
         "event"
     );
 
-    renderLinkList(
-        item.links.writings,
-        `${prefix}-link-writings`,
-        worldData.writing,
-        "writing"
-    );
-
     // Populate dropdowns after rendering links
     populateItemLinkDropdowns(itemId, itemType);
 }
@@ -22358,9 +21791,7 @@ function populateItemLinkDropdowns(itemId, itemType) {
             ? "character"
             : itemType === "topic"
                 ? "topic"
-                : itemType === "writing"
-                    ? "writing"
-                    : "map";
+                : "map";
     populateLinkDropdown(`add-${prefix}-link-character`, worldData.characters, item.links.characters, "character");
     populateLinkDropdown(`add-${prefix}-link-topic`, worldData.topics, item.links.topics, "topic");
     populateLinkDropdown(`add-${prefix}-link-map`, worldData.maps, item.links.maps, "map");
@@ -22376,7 +21807,6 @@ function ensureItemLinkBuckets(item) {
     if (!Array.isArray(item.links.maps)) item.links.maps = [];
     if (!Array.isArray(item.links.markers)) item.links.markers = [];
     if (!Array.isArray(item.links.events)) item.links.events = [];
-    if (!Array.isArray(item.links.writings)) item.links.writings = [];
     return item.links;
 }
 
@@ -22429,7 +21859,6 @@ function getItemById(itemId, itemType) {
     switch (itemType) {
         case "character": return worldData.characters[itemId];
         case "topic": return worldData.topics[itemId];
-        case "writing": return (worldData.writing || {})[itemId];
         case "map": return worldData.maps[itemId];
         case "event": return worldData.events[itemId];
         default: return null;
@@ -22641,10 +22070,10 @@ function navigateToItem(itemId, itemType) {
             }, 100);
         }
     } else {
+        if (itemType === "writing") return;
         // Switch to appropriate category
         const categoryMap = {
             'topic': 'topics',
-            'writing': 'topics',
             'character': 'characters',
             'event': 'timeline',
             'map': 'maps'
@@ -22673,11 +22102,10 @@ function getBacklinks(itemId, itemType) {
         characters: [],
         topics: [],
         events: [],
-        maps: [],
-        writings: []
+        maps: []
     };
     
-    const linkType = itemType === 'writing' ? 'writings' : itemType + 's';
+    const linkType = itemType + 's';
     
     // Search through all events for references
     Object.values(worldData.events).forEach(event => {
@@ -22718,15 +22146,6 @@ function getBacklinks(itemId, itemType) {
         }
     });
 
-    Object.values(worldData.writing || {}).forEach(node => {
-        if (node.id === itemId) return; // Don't include self
-        if (!node.links) return;
-
-        if (node.links[linkType] && node.links[linkType].includes(itemId)) {
-            backlinks.writings.push(node.id);
-        }
-    });
-    
     return backlinks;
 }
 
@@ -22742,7 +22161,7 @@ function renderBacklinks(itemId, itemType, containerId) {
     
     // Count total backlinks
     const total = backlinks.characters.length + backlinks.topics.length + 
-                  backlinks.events.length + backlinks.maps.length + backlinks.writings.length;
+                  backlinks.events.length + backlinks.maps.length;
     
     if (total === 0) {
         container.innerHTML = '<div style="color: #8b7355; font-style: italic; padding: 8px;">No references yet</div>';
@@ -22837,28 +22256,6 @@ function renderBacklinks(itemId, itemType, containerId) {
         
         container.appendChild(mapSection);
     }
-
-    if (backlinks.writings.length > 0) {
-        const writingSection = document.createElement('div');
-        writingSection.className = 'backlink-group';
-        writingSection.innerHTML = '<div style="font-weight: bold; color: #d4a574; margin-bottom: 5px;">📝 Writing</div>';
-
-        backlinks.writings.forEach((writingId) => {
-            const node = (worldData.writing || {})[writingId];
-            if (!node) return;
-
-            const item = document.createElement('div');
-            item.className = 'backlink-item link-item';
-            item.dataset.type = 'writing';
-            item.textContent = node.name || 'Untitled';
-            item.onclick = () => navigateToItem(writingId, 'writing');
-            item.title = `Referenced in: ${node.name || 'Untitled'}`;
-
-            writingSection.appendChild(item);
-        });
-
-        container.appendChild(writingSection);
-    }
 }
 
 /* ------------------------------------------------------------
@@ -22900,18 +22297,6 @@ function createLinkTooltip(itemId, itemType) {
             }
             break;
 
-        case 'writing':
-            item = (worldData.writing || {})[itemId];
-            if (item) {
-                content = `<strong>📝 ${item.name || 'Untitled'}</strong>`;
-                if (item.kind) content += `<br><em>${item.kind}</em>`;
-                if (item.synopsis) {
-                    const text = String(item.synopsis).replace(/<[^>]*>/g, '').substring(0, 100);
-                    content += `<br>${text}${text.length >= 100 ? '...' : ''}`;
-                }
-            }
-            break;
-            
         case 'map':
             item = worldData.maps[itemId];
             if (item) {
@@ -22954,7 +22339,6 @@ function renderClickableLinks(linkIds, linkType, containerId) {
     switch (linkType) {
         case 'character': source = worldData.characters; break;
         case 'topic': source = worldData.topics; break;
-        case 'writing': source = worldData.writing || {}; break;
         case 'map': source = worldData.maps; break;
         case 'event': source = worldData.events; break;
     }
@@ -23013,7 +22397,6 @@ function renderRelationshipGraph(itemId, itemType, containerId) {
         case 'topic': centerItem = worldData.topics[itemId]; break;
         case 'event': centerItem = worldData.events[itemId]; break;
         case 'map': centerItem = worldData.maps[itemId]; break;
-        case 'writing': centerItem = (worldData.writing || {})[itemId]; break;
     }
     
     if (!centerItem) return;
@@ -23039,20 +22422,6 @@ function renderRelationshipGraph(itemId, itemType, containerId) {
         node.style.cssText = 'padding: 8px; text-align: center; cursor: pointer; background: #f5e6d3; border: 1px solid #d4a574; border-radius: 4px;';
         connectedItems.appendChild(node);
     });
-
-    backlinks.writings.forEach(writingId => {
-        const nodeItem = (worldData.writing || {})[writingId];
-        if (!nodeItem) return;
-
-        const node = document.createElement('div');
-        node.className = 'link-item';
-        node.dataset.type = 'writing';
-        node.textContent = `📝 ${nodeItem.name || 'Untitled'}`;
-        node.onclick = () => navigateToItem(writingId, 'writing');
-        node.style.cssText = 'padding: 8px; text-align: center; cursor: pointer; background: #f5e6d3; border: 1px solid #d4a574; border-radius: 4px;';
-        connectedItems.appendChild(node);
-    });
-    
     container.appendChild(connectedItems);
 }
 
@@ -30296,8 +29665,6 @@ function migrateVault(oldVault) {
             projectTitle: "",
         },
         topics: {},
-        writing: {},
-        writingConfig: {},
         characters: {},
         events: {},
         maps: {}

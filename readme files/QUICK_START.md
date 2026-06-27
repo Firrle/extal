@@ -2,16 +2,15 @@
 
 ## What You Can Do
 
-The app now includes more than color themes. In the current build you can:
+In the current build you can:
 
-- Create and edit Topics, Characters, Events, Maps, and Writing scenes
+- Create and edit world Topics, Characters, Events, and Maps
 - Use built-in linking and backlinks to move between connected entities
 - Run offline spelling and grammar checks with LanguageTool
 - Rewrite text locally with your installed GGUF model
-- Read text aloud with Text to Speech using bundled Piper or system voices
+- Read selected text aloud with Text to Speech using bundled Piper or system voices
 - Export speech as WAV when using bundled Piper
 - Save Topic and Character templates in Settings
-- Use Writing Tools for typography, manuscript search/replace, project defaults, and consistency checks
 - Customize the UI theme and save/import/export color schemes
 
 ---
@@ -24,12 +23,12 @@ npm start
 ```
 
 ### 2. Open or Create Content
-- Use the left navigation to choose Topics, Characters, Timeline, Maps, or Writing
+- Use the left navigation to choose Topics, Characters, Timeline, or Maps
 - Select an existing item or create a new one
 - Changes save automatically as you work
 
 ### 3. Use the Main Toolbar
-The editor toolbar now includes several writing and review tools:
+The editor toolbar includes several editing and review tools:
 
 - `ABC✓` - Open offline LanguageTool spelling and grammar checks
 - `AI✎` - Open local AI Rewrite
@@ -45,7 +44,6 @@ The editor toolbar now includes several writing and review tools:
 Open **Settings** from the top toolbar to access the current user-facing configuration areas.
 
 ### Theme Customization
-The existing color system is still available:
 
 - Choose from built-in themes
 - Customize individual UI colors
@@ -53,7 +51,7 @@ The existing color system is still available:
 - Reset colors to the selected theme defaults
 
 ### Topic Templates
-In Settings you can now manage default templates for Topics:
+In Settings you can manage default templates for Topics:
 
 - Choose the default template used for new topics
 - Apply the selected template to the current topic
@@ -69,7 +67,7 @@ The same workflow is available for Characters:
 - Delete selected custom character templates
 
 ### Text to Speech
-Settings now includes a full TTS section.
+Settings includes a full TTS section.
 
 You can configure:
 
@@ -89,7 +87,7 @@ You can configure:
 - `Natural` and `Narration` improve pacing for read-aloud text
 - Grammar cleanup uses the app's local LanguageTool integration when available
 - WAV export is available only for bundled Piper
-- Piper speed is now rendered without shifting pitch during normal use
+- Piper speed is rendered without shifting pitch during normal use
 
 ---
 
@@ -121,8 +119,8 @@ What it does:
 - Sends no text online
 - Shows the active local model and whether local AI is enabled
 - Supports two modes:
-	- `Fix grammar (minimal)`
-	- `Rewrite (preserve voice)`
+  - `Fix grammar (minimal)`
+  - `Rewrite (preserve voice)`
 - Lets you adjust rewrite strength
 - Can rewrite the current selection or the current paragraph
 - Lets you review the suggestion before applying or copying it
@@ -140,52 +138,15 @@ The toolbar exposes two related actions:
 
 Best use cases:
 
-- Proof-listen scenes and notes
+- Proof-listen topic notes
 - Preview the effect of punctuation and delivery pacing
 - Export narration drafts for review outside the app
 
 For best results:
 
 - Use **Natural** or **Narration** in Settings for prose
-- Turn on **Minimal** or **Strict** grammar cleanup if your draft has rough punctuation
+- Turn on **Minimal** or **Strict** grammar cleanup if your text has rough punctuation
 - Use **Preview Voice** in Settings before long sessions or WAV export
-
----
-
-## Writing Tools
-
-The Writing Tools modal now covers several authoring workflows.
-
-### Typography
-Saved in the vault:
-
-- Paper width and padding
-- Font size and line height
-- Paragraph spacing and indentation
-- Custom font family
-
-### Global Manuscript Search / Replace
-
-- Search across manuscript content
-- Replace checked matches or replace all
-- Supports case-sensitive search, whole-word search, and regex
-
-### Project Templates / Defaults
-Used for Writing scenes:
-
-- Default status
-- Default target word count
-- Default POV
-- Default location
-- Default labels
-- Default scene content template
-- Apply defaults to the current scene or capture the current scene as a template
-
-### Consistency Check
-
-- `Quick Check` runs a fast heuristic pass
-- `AI Check` uses the local GGUF model to extract claims and find likely contradictions
-- Scope can target the entire project, current chapter, or current scene
 
 ---
 
@@ -205,24 +166,11 @@ In day-to-day use, this means you can:
 
 ---
 
-## Writing Export
-
-The writing compile workflow supports exporting manuscripts as:
-
-- DOCX
-- PDF
-- HTML
-
-You can also choose whether chapter headings are included during export.
-
----
-
 ## Storage Notes
 
 Different features save in different places:
 
 - Theme choices and some editor preferences are stored locally on the device
-- Writing typography and writing project defaults are saved in the vault
 - Topic and Character template choices are managed through app settings and persist between sessions
 - Exported themes and WAV files are regular files you can keep or share
 
@@ -230,15 +178,15 @@ Different features save in different places:
 
 ## Best First Workflow
 
-If you are new to the current build, this is the fastest way to try the new tools:
+If you are new to the current build, this is the fastest way to try the main tools:
 
-1. Open a Writing scene or Topic
+1. Open a Topic
 2. Use `ABC✓` to run a grammar pass
 3. Use `AI✎` to rewrite a paragraph locally
 4. Open Settings and configure TTS with Piper or a system voice
-5. Preview the voice, then use `TTS` on the scene
+5. Preview the voice, then use `TTS` on the current content
 6. Export a `WAV` if you want an audio proof copy
-7. Open Writing Tools to set project defaults and author mode preferences
+7. Use linking features to connect related topics, characters, maps, and events
 
 ---
 
@@ -273,4 +221,4 @@ A: Use `LINKING_SYSTEM_GUIDE.md`, which documents navigation, backlinks, tooltip
 
 ---
 
-This guide now reflects the main user-facing features in the current app instead of only the original theme customization workflow.
+This guide reflects the current worldbuilding-focused app workflow and does not describe the removed writing editor.

@@ -84,6 +84,5 @@ contextBridge.exposeInMainWorld("elyriaAPI", {
     loadVault: () => ipcRenderer.invoke("elyria:load-vault"),
     saveVault: (data, vaultPath) => ipcRenderer.invoke("elyria:save-vault", data, vaultPath),
     saveVaultAs: (data) => ipcRenderer.invoke("elyria:save-vault-as", data),
-    exportContent: (payload) => ipcRenderer.invoke("elyria:export-content", payload),
-    compileWriting: (payload) => ipcRenderer.invoke("elyria:compile-writing", payload)
+    exportContent: (payload) => ipcRenderer.invoke("elyria:export-content", payload)
 });

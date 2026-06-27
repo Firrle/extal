@@ -123,7 +123,7 @@ This is currently a simplified version. A future update could add:
 ### **3. Story Planning**
 - Visualize character networks through relationship graphs
 - Find gaps in your world's interconnectedness
-- Discover new story opportunities from existing connections
+- Discover new worldbuilding connections from existing links
 
 ### **4. Quick Navigation**
 - Jump between related content without using the sidebar
@@ -244,6 +244,6 @@ Potential additions to the linking system:
 
 ## 🎉 Conclusion
 
-The comprehensive linking system transforms your Extal World Builder vault from a collection of isolated entries into a living, breathing world. Every click reveals new connections, every backlink tells a story, and every relationship graph unveils the intricate web of your creation.
+The comprehensive linking system transforms your Extal World Builder vault from a collection of isolated entries into a living, breathing world. Every click reveals new connections, every backlink shows how ideas connect, and every relationship graph unveils the intricate web of your creation.
 
 **Happy Worldbuilding!** ✨📖🗺️

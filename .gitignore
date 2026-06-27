@@ -17,6 +17,17 @@ tts/piper/models/*.onnx
 tts/piper/linux/
 tts/piper/windows/
 mailing_list/*.zip
+backend/*.bak
+scan_results.json
+backend/example_scan_results.json
+backend/test_vault.json
+marker_fixes.patch
+_
+json
+os
+webview
+backend/json
+backend/os
 
 # Python caches
 __pycache__/

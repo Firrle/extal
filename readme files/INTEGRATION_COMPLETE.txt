@@ -10,7 +10,7 @@
 
 1. Open the app (npm start)
 2. Go to TOPICS or create a new document
-3. Write your worldbuilding content (lore, story, etc.)
+3. Write your worldbuilding content and notes
 4. Click the "🔍 Auto-Scan" button in the editor toolbar (gold button)
 5. Choose: AI-enhanced or Rule-based scanning
 6. Review the results in the popup modal
@@ -33,7 +33,7 @@ When you scan a document, it will:
 
 💡 EXAMPLE WORKFLOW:
 
-1. Write a story about your world:
+1. Write about your world:
    ┌──────────────────────────────────────────────────────────┐
    │ In the year 1450, King Aldric led his forces against    │
    │ the dark sorcerer Malachar. The Battle of Thornfield    │
@@ -114,10 +114,10 @@ AI-Enhanced (Optional):
 🎯 USE CASES:
 
 1. Import old lore documents
-   → Scan existing writings to populate vault
+   → Scan existing notes or documents to populate vault
 
 2. Write naturally, scan later
-   → Focus on writing, extract entities afterward
+   → Focus on world notes first, extract entities afterward
 
 3. Consistency checking
    → Find character mentions you forgot to link
