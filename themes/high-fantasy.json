@@ -1,0 +1,18 @@
+{
+  "name": "High Fantasy (Extal)",
+  "colors": {
+    "bg-primary": "#e6dfd0",
+    "bg-secondary": "#d9cdb5",
+    "bg-tertiary": "#c9bba5",
+    "text-primary": "#000000",
+    "text-secondary": "#80592e",
+    "text-tertiary": "#948253",
+    "border-color": "#948253",
+    "accent": "#948253",
+    "accent-hover": "#82703e",
+    "accent-light": "#3f6f3f",
+    "success": "#2f4f2f",
+    "warning": "#948253",
+    "danger": "#8b4545"
+  }
+}

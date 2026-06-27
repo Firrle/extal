@@ -1,0 +1,18 @@
+{
+  "scheme": "ocean",
+  "custom": {
+    "bg-primary": "#0f1419",
+    "bg-secondary": "#1a1f2e",
+    "bg-tertiary": "#253549",
+    "text-primary": "#e0f2f1",
+    "text-secondary": "#b2dfdb",
+    "text-tertiary": "#80cbc4",
+    "border-color": "#004d73",
+    "accent": "#00bcd4",
+    "accent-hover": "#4dd0e1",
+    "accent-light": "#26c6da",
+    "success": "#4db8a8",
+    "warning": "#ffb74d",
+    "danger": "#ef5350"
+  }
+}

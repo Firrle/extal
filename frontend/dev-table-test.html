@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dev Table Test</title>
+  <style>
+    body { font-family: Georgia, serif; margin: 12px; background: #222; color: #eee; }
+    #controls { margin-bottom: 8px; }
+    button { margin-right: 6px; padding: 6px 10px; }
+    #test-editor {
+      min-height: 320px;
+      background: #fff;
+      color: #000;
+      border: 1px solid #666;
+      padding: 12px;
+    }
+    table.test-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    table.test-table td, table.test-table th { border: 1px solid #999; padding: 6px; vertical-align: top; overflow-wrap: anywhere; }
+    #dev-log {
+      margin-top: 10px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 8px;
+      max-height: 160px;
+      overflow: auto;
+      font-family: monospace;
+      color: #b6ffb6;
+    }
+  </style>
+</head>
+<body>
+  <h3>Dev Table Test</h3>
+  <div id="controls">
+    <button id="btn-insert">Insert Test Table</button>
+    <button id="btn-reset">Reset Editor</button>
+  </div>
+
+  <div id="test-editor"></div>
+  <div id="dev-log"></div>
+
+  <script src="../node_modules/tinymce/tinymce.min.js"></script>
+  <script>
+    const logEl = document.getElementById('dev-log');
+
+    function devLog(msg) {
+      const d = document.createElement('div');
+      d.textContent = '[' + new Date().toISOString() + '] ' + msg;
+      logEl.appendChild(d);
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    function placeCaretAtEnd(el) {
+      if (!el) return;
+      el.focus();
+      const sel = window.getSelection();
+      if (!sel) return;
+      sel.removeAllRanges();
+      const range = document.createRange();
+      range.selectNodeContents(el);
+      range.collapse(false);
+      sel.addRange(range);
+    }
+
+    function insertTestTable(editor) {
+      const html = [
+        '<table class="test-table">',
+        '<tbody>',
+        '<tr><td>Cell 1</td><td>Cell 2</td><td>Cell 3</td></tr>',
+        '<tr><td>Cell 4</td><td>Cell 5</td><td>Cell 6</td></tr>',
+        '<tr><td>Cell 7</td><td>Cell 8</td><td>Cell 9</td></tr>',
+        '</tbody>',
+        '</table>'
+      ].join('');
+
+      editor.insertContent(html);
+      devLog('Inserted test table');
+      setTimeout(() => {
+        const td = document.querySelector('table.test-table td');
+        if (td) {
+          placeCaretAtEnd(td);
+          devLog('Focused first cell');
+        }
+      }, 50);
+    }
+
+    tinymce.init({
+      target: document.getElementById('test-editor'),
+      inline: true,
+      menubar: false,
+      toolbar: false,
+      statusbar: false,
+      branding: false,
+      promotion: false,
+      resize: false,
+      plugins: 'table lists link image code',
+      valid_elements: '*[*]',
+      extended_valid_elements: 'table[style|class],tbody,thead,tfoot,tr[style],td[style|colspan|rowspan],th[style|colspan|rowspan],img[src|alt|title|style],a[href|target|rel|class],span[style|class],p[style|class],div[style|class],br',
+      setup: (editor) => {
+        editor.on('init', () => devLog('TinyMCE created'));
+
+        document.getElementById('btn-insert').addEventListener('click', () => insertTestTable(editor));
+        document.getElementById('btn-reset').addEventListener('click', () => {
+          editor.setContent('');
+          devLog('Editor reset');
+        });
+      }
+    });
+
+    devLog('Test harness ready. Click "Insert Test Table" to begin.');
+  </script>
+</body>
+</html>

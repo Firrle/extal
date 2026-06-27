@@ -1,0 +1,22 @@
+{
+  "topics": {
+    "test-001": {
+      "id": "test-001",
+      "name": "Simple Test",
+      "type": "topic",
+      "content": "<p>Test</p>",
+      "order": 0,
+      "editorBackground": "",
+      "links": {
+        "characters": [],
+        "topics": [],
+        "maps": [],
+        "markers": [],
+        "events": []
+      }
+    }
+  },
+  "characters": {},
+  "events": {},
+  "maps": {}
+}

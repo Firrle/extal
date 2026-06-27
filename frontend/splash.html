@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-app-region: drag;
+    overflow: hidden;
+  }
+  .icon {
+    width: 90%;
+    max-width: 520px;
+    height: auto;
+    margin-bottom: 24px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+    color: #c4b5fd;
+  }
+  .bar-track {
+    width: 240px;
+    height: 4px;
+    background: #2d2d4a;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    width: 30%;
+    background: linear-gradient(90deg, #7c3aed, #c4b5fd);
+    border-radius: 2px;
+    animation: slide 1.2s ease-in-out infinite;
+  }
+  @keyframes slide {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.7; }
+  }
+</style>
+</head>
+<body>
+  <img class="icon" id="splash-img" alt="">
+  <h1>Extal World Builder</h1>
+  <div class="bar-track"><div class="bar-fill"></div></div>
+  <script>
+    // Load image dynamically to work in all packaging scenarios
+    fetch('assets/world_builder.png')
+      .then(r => r.blob())
+      .then(blob => {
+        const url = URL.createObjectURL(blob);
+        document.getElementById('splash-img').src = url;
+      })
+      .catch(e => console.error('Failed to load splash image:', e));
+  </script>
+</body>
+</html>

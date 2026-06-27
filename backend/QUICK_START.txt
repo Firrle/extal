@@ -1,0 +1,198 @@
+╔═══════════════════════════════════════════════════════════════════╗
+║                    AUTO-SCANNER QUICK START                       ║
+║            Extract Worldbuilding Entities from Text               ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+✅ SETUP COMPLETE! You now have a fully functional auto-scanner.
+
+📁 FILES CREATED:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  backend/auto_scanner.py            Main scanner (rule-based + AI)
+  backend/example_usage.py           Examples & demonstrations
+  backend/sample_text.txt            Sample worldbuilding text
+  backend/requirements.txt           Optional AI dependencies
+  backend/AUTO_SCANNER_README.md     Full documentation
+  backend/INTEGRATION_EXAMPLE.js     Electron app integration
+  backend/example_scan_results.json  Sample output (generated)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+🚀 TRY IT NOW - THREE WAYS:
+
+1️⃣  RUN EXAMPLES (Best way to start)
+   ┌──────────────────────────────────────────────────────┐
+   │ python backend/example_usage.py                      │
+   └──────────────────────────────────────────────────────┘
+   
+   This will show you:
+   • Basic character/event/topic extraction
+   • How suggestions work
+   • Matching against existing vault entries
+   • Full workflow demo
+
+2️⃣  SCAN THE SAMPLE TEXT
+   ┌──────────────────────────────────────────────────────┐
+   │ python backend/auto_scanner.py backend/sample_text.txt│
+   └──────────────────────────────────────────────────────┘
+   
+   Results saved to: scan_results.json
+   
+3️⃣  SCAN YOUR OWN DOCUMENT
+   ┌──────────────────────────────────────────────────────┐
+   │ python backend/auto_scanner.py your_story.txt        │
+   └──────────────────────────────────────────────────────┘
+
+
+📊 WHAT IT EXTRACTS:
+
+Rule-Based (No AI needed):
+┌─────────────────────────────────────────────────────────────┐
+│ ✓ Characters with titles (King, Queen, Lord, etc.)         │
+│ ✓ Proper nouns with character context                      │
+│ ✓ Timeline events (wars, ages, battles)                    │
+│ ✓ Dates (years, ages, temporal markers)                    │
+│ ✓ Topics/themes (Magic, War, Politics, etc.)               │
+│ ✓ Locations (kingdoms, cities, mountains)                  │
+│ ✓ Matches against existing vault entries                   │
+│ ✓ Gender inference from titles                             │
+└─────────────────────────────────────────────────────────────┘
+
+AI-Enhanced (Optional):
+┌─────────────────────────────────────────────────────────────┐
+│ ✓ Better character name detection                          │
+│ ✓ Contextual understanding                                 │
+│ ✓ Relationship detection                                   │
+│ ✓ More accurate classification                             │
+└─────────────────────────────────────────────────────────────┘
+
+
+⚡ EXAMPLE OUTPUT:
+
+After scanning, you get a JSON file with suggestions:
+
+{
+  "suggestions": {
+    "new_characters": [
+      {
+        "name": "King Joshua",
+        "titles": ["King"],
+        "gender": "Male",
+        "mentions": 3,
+        "confidence": 0.90
+      }
+    ],
+    "new_events": [
+      {
+        "name": "Chaos Wars",
+        "date": "1201",
+        "description": "...",
+        "confidence": 0.85
+      }
+    ],
+    "link_suggestions": [
+      {
+        "type": "character",
+        "name": "Ravage",
+        "reason": "Mentioned 2 times in document"
+      }
+    ]
+  }
+}
+
+
+🎯 USE CASES:
+
+┌─────────────────────────────────────────────────────────────┐
+│ 📚 Import Existing Lore                                     │
+│    Scan old documents to populate your vault quickly        │
+│                                                              │
+│ 🔍 Find Missing Links                                       │
+│    Discover character mentions you forgot to link           │
+│                                                              │
+│ 📅 Build Timeline                                           │
+│    Auto-extract dates and events from narrative text        │
+│                                                              │
+│ 🏷️  Auto-Categorize                                         │
+│    Let the scanner suggest topic classifications            │
+│                                                              │
+│ 🗺️  Populate Maps                                           │
+│    Extract location names for map marker suggestions        │
+└─────────────────────────────────────────────────────────────┘
+
+
+🔧 OPTIONAL: AI ENHANCEMENT
+
+Want better accuracy? Install one of these:
+
+Option 1: spaCy (FREE, LOCAL)
+┌──────────────────────────────────────────────────────────────┐
+│ pip install spacy                                            │
+│ python -m spacy download en_core_web_sm                      │
+│ python backend/auto_scanner.py your_text.txt --ai            │
+└──────────────────────────────────────────────────────────────┘
+
+Option 2: OpenAI GPT-4 (PAID, CLOUD)
+┌──────────────────────────────────────────────────────────────┐
+│ pip install openai                                           │
+│ export OPENAI_API_KEY="your-key-here"                        │
+│ python backend/auto_scanner.py your_text.txt --ai            │
+└──────────────────────────────────────────────────────────────┘
+
+Option 3: Anthropic Claude (PAID, CLOUD)
+┌──────────────────────────────────────────────────────────────┐
+│ pip install anthropic                                        │
+│ export ANTHROPIC_API_KEY="your-key-here"                     │
+│ python backend/auto_scanner.py your_text.txt --ai            │
+└──────────────────────────────────────────────────────────────┘
+
+
+🔌 INTEGRATION WITH YOUR APP:
+
+See backend/INTEGRATION_EXAMPLE.js for complete code to:
+  • Add a "Scan Document" button to your app
+  • Show suggestions in a modal
+  • Let users approve/reject suggestions
+  • Auto-add entities to vault
+
+Quick integration steps:
+  1. Add IPC handler to main.js (provided)
+  2. Add UI button to index.html
+  3. Add scanner class to renderer
+  4. Done! Users can now auto-scan their documents
+
+
+📈 PERFORMANCE:
+
+Rule-Based:
+  • Instant (< 1 second for most documents)
+  • No API calls or internet required
+  • Works offline
+
+AI-Enhanced:
+  • 2-10 seconds (depends on service/model)
+  • Requires API key or local model
+  • Better accuracy
+
+
+💡 TIPS:
+
+• Start with rule-based to see what it can do
+• Documents with 500+ words work best
+• Proper nouns and titles improve detection
+• Review suggestions before adding to vault
+• Adjust confidence thresholds in code if needed
+
+
+📚 DOCUMENTATION:
+
+Full docs:     backend/AUTO_SCANNER_README.md
+Examples:      backend/example_usage.py
+Integration:   backend/INTEGRATION_EXAMPLE.js
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Ready to scan? Run this now:
+
+  python backend/example_usage.py
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

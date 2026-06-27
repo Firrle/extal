@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extal World Builder - Comprehensive Features</title>
+    <link rel="stylesheet" href="fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #000000;
+            --bg-soft: #2b231c;
+            --card: #b5b199;
+            --ink: #2d241a;
+            --ink-soft: #4a3d2f;
+            --line: #ad8f66;
+            --accent: #c79d5b;
+            --accent-strong: #9b763f;
+            --forest: #324932;
+            --cream: #f8ecd8;
+            --shadow: rgba(0, 0, 0, 0.24);
+        }
+
+        html,
+        body {
+            background: radial-gradient(circle at 20% 0%, #111111 0%, var(--bg) 45%, #111111 100%);
+            color: var(--cream);
+            font-family: "Source Serif 4", "Georgia", serif;
+            line-height: 1.65;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 72vh;
+            border-bottom: 1px solid #473824;
+            overflow: hidden;
+            background: #1f1811;
+        }
+
+        .hero-art {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: saturate(0.90) contrast(1.03);
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.70);
+            /* dark overlay */
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 3;
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 38px 20px 56px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 58px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Oswald", "Segoe UI", sans-serif;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #f3dfbd;
+            font-size: 1.03rem;
+        }
+
+        .brand img {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 227, 185, 0.45);
+        }
+
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .nav a {
+            color: #f3e8d4;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            border: 1px solid rgba(241, 214, 169, 0.5);
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(22, 18, 13, 0.3);
+            transition: 0.18s ease;
+        }
+
+        .nav a:hover {
+            background: rgba(199, 157, 91, 0.25);
+            border-color: rgba(241, 214, 169, 0.9);
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Playfair Display", "Georgia", serif;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            max-width: 780px;
+            font-size: clamp(2rem, 5vw, 3.6rem);
+            line-height: 1.12;
+            margin-bottom: 16px;
+            color: #f8ecd8;
+            text-wrap: balance;
+        }
+
+        .hero p {
+            max-width: 760px;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: #ead9be;
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 26px 20px 56px;
+        }
+
+        section {
+            margin-top: 28px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: 0 8px 24px var(--shadow);
+            color: var(--ink);
+            overflow: hidden;
+        }
+
+        .section-head {
+            padding: 20px 22px;
+            border-bottom: 1px solid #d7c2a0;
+            background: linear-gradient(180deg, #f9f1e4, #f2e5d2);
+        }
+
+        .section-head h2 {
+            font-size: clamp(1.4rem, 2.1vw, 2rem);
+            color: #2f2418;
+        }
+
+        .section-head p {
+            margin-top: 8px;
+            color: var(--ink-soft);
+            max-width: 860px;
+        }
+
+        .section-body {
+            padding: 22px;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 22px;
+        }
+
+        .panel {
+            border: 1px solid #dbc7a6;
+            border-radius: 10px;
+            padding: 16px;
+            background: #fcf6eb;
+        }
+
+        .panel h3 {
+            font-size: 1.24rem;
+            margin-bottom: 8px;
+            color: #35291d;
+        }
+
+        .panel p {
+            color: var(--ink-soft);
+            margin-bottom: 8px;
+        }
+
+        .panel ul {
+            margin-left: 18px;
+            color: var(--ink-soft);
+        }
+
+        .panel li {
+            margin-top: 7px;
+        }
+
+        .image-frame {
+            border: 1px solid #d2b992;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ead9bd;
+            box-shadow: 0 8px 16px rgba(30, 22, 14, 0.15);
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .caption {
+            padding: 8px 10px;
+            font-size: 0.85rem;
+            color: #5d4c39;
+            background: #f6ead8;
+            border-top: 1px solid #d8c19e;
+        }
+
+        .audience-grid,
+        .feature-grid,
+        .tech-grid,
+        .req-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .audience-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .feature-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .tech-grid,
+        .req-grid {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .tile {
+            background: #fbf4e7;
+            border: 1px solid #dcc7a5;
+            border-radius: 10px;
+            padding: 14px;
+        }
+
+        A .tile h3 {
+            font-size: 1.12rem;
+            color: #382b1d;
+            margin-bottom: 6px;
+        }
+
+        .tile p,
+        .tile li {
+            color: #5a4a39;
+        }
+
+        .tile ul {
+            margin-left: 18px;
+            margin-top: 8px;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 12px;
+        }
+
+        .step {
+            border-left: 4px solid var(--accent);
+            background: #fff8ec;
+            padding: 10px 12px;
+            border-radius: 8px;
+        }
+
+        .step strong {
+            color: #3a2d1f;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+            font-size: 0.95rem;
+        }
+
+        th,
+        td {
+            border: 1px solid #dcc6a1;
+            padding: 9px 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #efe0c7;
+            color: #342718;
+            font-weight: 700;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, #314731, #243321);
+            color: #efdfc2;
+            border: 1px solid #587558;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .updates-note {
+            margin-bottom: 14px;
+            padding: 10px 12px;
+            border: 1px solid #d9c4a2;
+            border-radius: 8px;
+            background: #fff7ea;
+            color: #5c4c39;
+            font-size: 0.92rem;
+        }
+
+        .update-entry {
+            margin-top: 14px;
+            border: 1px solid #dbc6a4;
+            border-radius: 10px;
+            background: #fff8ec;
+            overflow: hidden;
+        }
+
+        .update-date {
+            padding: 10px 12px;
+            background: #efe0c7;
+            color: #392b1c;
+            font-family: "Oswald", "Segoe UI", sans-serif;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+        }
+
+        .update-content {
+            padding: 12px;
+            color: #5a4a39;
+        }
+
+        .update-content p+p,
+        .update-content p+ol,
+        .update-content ol+p {
+            margin-top: 10px;
+        }
+
+        .update-content ol {
+            margin-left: 22px;
+        }
+
+        .update-edit-box {
+            margin-top: 14px;
+            border: 1px dashed #b99663;
+            border-radius: 10px;
+            padding: 12px;
+            background: #fff3df;
+        }
+
+        .update-edit-box strong {
+            color: #453222;
+        }
+
+        .callout h3 {
+            font-family: "Oswald", "Segoe UI", sans-serif;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #f3dfb5;
+            margin-bottom: 8px;
+        }
+
+        .footnote {
+            margin-top: 12px;
+            font-size: 0.92rem;
+            color: #6b5a45;
+        }
+
+        footer {
+            margin-top: 32px;
+            text-align: center;
+            color: #d6c3a4;
+            font-size: 0.94rem;
+            padding-bottom: 24px;
+        }
+
+        @media (max-width: 900px) {
+            .split {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .nav {
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <img class="hero-art" src="https://andrewnusz.com/wp-content/uploads/2026/01/world_builder-scaled.png"
+            alt="Extal fantasy worldbuilder artwork">
+        <div class="hero-overlay"></div>
+        <div class="hero-inner">
+            <div class="topbar">
+                <div class="brand">
+                    <img src="https://andrewnusz.com/wp-content/uploads/2026/02/icon.png" alt="Extal icon">
+                    <span>Extal World Builder</span>
+                </div>
+                <nav class="nav">
+                    <a href="#updates">Updates</a>
+                    <a href="#who">Who It Is For</a>
+                    <a href="#workflow">Workflow</a>
+                    <a href="#features">Feature System</a>
+                    <a href="#tech">Technical Notes</a>
+                    <a href="#requirements">Requirements</a>
+                </nav>
+            </div>
+            <h1>A desktop worldbuilding studio for linked lore, timelines, maps, and travel planning</h1>
+            <p>
+                Extal World Builder is designed to keep large fictional settings organized in one local-first workspace.
+                You can write articles, link entities directly in text, map locations, track timeline events, and
+                estimate
+                travel time by route in world-specific units.
+            </p>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <!-- UPDATE LOG START: edit this block for new release notes -->
+        <section id="updates">
+            <div class="section-head">
+                <h2>Extal World Builder - Updates</h2>
+                <p>
+                    All questions regarding the Extal World Builder should be asked in the forum section.
+                </p>
+            </div><img src="https://andrewnusz.com/wp-content/uploads/2026/03/world-and-draft-tab.png"
+                alt="Screenshot of Extal World Builder">
+            </a>
+            <div class="section-body">
+
+                <article class="update-entry">
+                    <div class="update-date">04-02-2026</div>
+                    <div class="update-content">
+                        <p>
+                            Version 0.8a is a hotfix that fixes the writing editor and left panel so that you can now
+                            drag and drop items the same way you do in the topics section.
+
+                            Also, in the Windows Version, the AI Engine is up and running! Both Linux and Windows now
+                            perform the same.
+
+                            </ol>
+                    </div>
+                </article>
+
+                <article class="update-entry">
+                    <div class="update-date">03-29-2026</div>
+                    <div class="update-content">
+                        <p>
+                            Version 0.8 beta is out for Windows and Linux. It still has bugs and I would love for people
+                            to tell me what works and what doesn't or even if there's a glitch here or there.
+
+                            <b>New Feature: The World and Draft</b>.
+                            I revamped the Topics tab to include both the same topics function but also a section
+                            dedicated
+                            to writing. There's several tools specific to writing.
+
+                            </ol>
+                    </div>
+                </article>
+
+                <article class="update-entry">
+                    <div class="update-date">03-04-2026</div>
+                    <div class="update-content">
+                        <p>
+                            Version 0.6 beta is out for Windows and Linux. Does it have bugs? Most likely so it should
+                            not be considered ready for actual usage. If you want to test it out, head on over to the
+                            forum. It's in the announcements.
+
+                            </ol>
+                    </div>
+                </article>
+
+                <article class="update-entry">
+                    <div class="update-date">02-15-2026</div>
+                    <div class="update-content">
+                        <p>
+                            Tested program on Windows 11 and so far things are working with the exception of the AI
+                            Model installing.
+                            I'll have to figure something out for this. This is not a big issue though because the
+                            automatic function
+                            of searching is still present so scanning still works.
+                        </p>
+                        <p>
+                            Feature wise, Markdown formatting is gone. In its place is a workable word processor with a
+                            toolbar for fonts,
+                            alignment, image input and format, plus within the topics editor, a functioning text box and
+                            image box similar
+                            to Microsoft Publisher.
+                        </p>
+                        <ol>
+                            <li>Each topic created has its own visual editor where you put your text and images wherever
+                                you want.</li>
+                            <li>The main topics editor is detachable so you can enlarge the window and get a better view
+                                of your topic selection.</li>
+                            <li>Added an export option for one big export of all tabs or single tabs in the formats
+                                markdown, xml, docx, or pdf.</li>
+                        </ol>
+                    </div>
+                </article>
+
+                <article class="update-entry">
+                    <div class="update-date">01-31-2026</div>
+                    <div class="update-content">
+                        <p>
+                            The features for each tab (Topics, Characters, Timeline, Maps) work semi-correctly.
+                            There needs to be some tweaking here and there.
+                        </p>
+                        <p>
+                            Feature wise, I think I'm done adding things for now. I really like where it's at.
+                            Everything is linkable and that was one of 2 goals: add an interactive map and a linking
+                            system.
+                        </p>
+                        <p>
+                            I'm actually undecided on the "font system" though. Do I really want a markdown editor or go
+                            with
+                            a word processor? I'm leaning towards a markdown system right now.
+                        </p>
+                    </div>
+                </article>
+
+
+            </div>
+        </section>
+        <!-- UPDATE LOG END -->
+
+        <section id="who">
+            <div class="section-head">
+                <h2>Who This Program Is Built For</h2>
+                <p>
+                    Extal is especially useful when your world has enough moving parts that plain notes stop working.
+                    It is built for creators who need relationships, context, and navigation between many entities.
+                </p>
+            </div>
+            <div class="section-body audience-grid">
+                <article class="tile">
+                    <h3>Novelists and Series Writers</h3>
+                    <p>Track recurring characters, evolving locations, and timeline consistency over long projects.</p>
+                    <ul>
+                        <li>Linked article text reduces continuity mistakes.</li>
+                        <li>Backlinks reveal where an item is referenced.</li>
+                        <li>Timeline events keep historical order visible.</li>
+                    </ul>
+                </article>
+                <article class="tile">
+                    <h3>Game Masters and Campaign Designers</h3>
+                    <p>Run living settings with factions, NPCs, map points, and event history that all connect together.
+                    </p>
+                    <ul>
+                        <li>Interactive map markers for quest and travel planning.</li>
+                        <li>Travel-time measuring in weeks, days, hours, minutes.</li>
+                        <li>Fast navigation between linked entities during sessions.</li>
+                    </ul>
+                </article>
+                <article class="tile">
+                    <h3>Game and Narrative Teams</h3>
+                    <p>Keep design references structured in a local desktop vault instead of scattered files.</p>
+                    <ul>
+                        <li>Entity linking helps writers and designers share context.</li>
+                        <li>Topic hierarchy supports large lore libraries.</li>
+                        <li>Local file-based storage is easy to back up and version.</li>
+                    </ul>
+                </article>
+                <article class="tile">
+                    <h3>Hobby Worldbuilders</h3>
+                    <p>Create a personal world encyclopedia with maps, characters, and historical records in one place.
+                    </p>
+                    <ul>
+                        <li>Rich editor tools support long-form world documents.</li>
+                        <li>Visual structure keeps hobby projects easy to revisit.</li>
+                        <li>Optional scanning can speed up initial setup from notes.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="workflow">
+            <div class="section-head">
+                <h2>How People Use It Day to Day</h2>
+                <p>
+                    The app is organized around a practical cycle: build entries, connect them, and use the links while
+                    writing or planning.
+                </p>
+            </div>
+            <div class="section-body split">
+                <div class="panel">
+                    <h3>Typical Workflow</h3>
+                    <div class="timeline">
+                        <div class="step"><strong>1. Build your base:</strong> create topics, characters, events, and
+                            maps in the left tree.</div>
+                        <div class="step"><strong>2. Write and annotate:</strong> use the center editor for lore pages,
+                            biographies, and event descriptions.</div>
+                        <div class="step"><strong>3. Link meaningfully:</strong> connect entities in metadata panels and
+                            inside sentence text with internal hyperlinks.</div>
+                        <div class="step"><strong>4. Place locations:</strong> add map markers, attach labels and
+                            descriptions, and connect markers to entities.</div>
+                        <div class="step"><strong>5. Measure travel:</strong> click a route and display walking/mounted
+                            travel in world time format.</div>
+                        <div class="step"><strong>6. Iterate safely:</strong> edits auto-save to a local vault and can
+                            be copied with Save As.</div>
+                    </div>
+                </div>
+                <figure class="image-frame">
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/usage.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/usage.png"
+                            alt="Visual editor screenshot">
+                    </a>
+                    <figcaption class="caption">The app is intended for deep, interconnected world documentation rather
+                        than isolated notes. Visual editor supports text and images anywhere.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="section-head">
+                <h2>Comprehensive Feature Breakdown</h2>
+                <p>
+                    The sections below describe what is implemented in the current build and how each part supports
+                    actual worldbuilding work.
+                </p>
+            </div>
+            <div class="section-body feature-grid">
+                <article class="tile">
+                    <h3>Core Workspace and Data Model</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/draft.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/draft.png"
+                            alt="Workspace screenshot" style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Tabs: World + Draft, Characters, Timeline, Maps.</li>
+                        <li>Three-panel layout: left (tree), center (editor/map), right (metadata/links).</li>
+                        <li>Resizable/collapsible panels, detachable topic editor window.</li>
+                        <li>Vault workflow: New, Load, Save As, auto-save, backup .bak files.</li>
+                        <li>Legacy vault migration and last-opened vault auto-load.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Topics and Lore Organization</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/world-and-draft-tab.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/world-and-draft-tab.png"
+                            alt="Workspace screenshot" style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Hierarchical topic tree with drag-and-drop reorder/nesting.</li>
+                        <li>Context menu: add child, rename, delete, color override.</li>
+                        <li>Linked items: characters, topics, maps, markers, timeline events.</li>
+                        <li>Backlinks panel: see all references to a topic.</li>
+                        <li>Templates for new topics, import/export/reset.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Character Management</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/character-tab.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/character-tab.png"
+                            alt="Character editor" style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Profile fields: name, race, age, gender, class, tags, personality, background, motivations.
+                        </li>
+                        <li>Portrait: emoji or uploaded image.</li>
+                        <li>Tabs: Overview, Biography, Notes, Relationships.</li>
+                        <li>Relationship editor: target, type, notes.</li>
+                        <li>Links/backlinks for navigation.</li>
+                        <li>Templates for new characters.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Timeline and Event Tracking</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/timeline-tab.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/timeline-tab.png"
+                            alt="Timeline view" style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Events: date, end date, category, description, links.</li>
+                        <li>Rich editor for event content.</li>
+                        <li>Timeline view: chronological event cards, category filter.</li>
+                        <li>Event links: characters, topics, maps, markers.</li>
+                        <li>Backlinks and relationship network.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Rich Editor and Formatting Toolset</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/draft-tab-writing-tools.png"
+                        target="_blank" rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/draft-tab-writing-tools.png"
+                            alt="Editor toolbar" style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Formatting: headings, alignment, lists, quote, bold/italic/underline/strikethrough.</li>
+                        <li>Font family/size, color, background highlight.</li>
+                        <li>Image insertion (URL/file), alignment, resize.</li>
+                        <li>Table insertion, row/column editing, merge/split, header toggle, border/cell styling.</li>
+                        <li>Shape tool: rectangle/circle/triangle, table-cell backgrounds.</li>
+                        <li>Spelling & grammar (offline), AI rewrite (local model).</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>In-Article Hyperlinking and Graph-Like Navigation</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/hyperlinking.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/hyperlinking.png"
+                            alt="Linking system" style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Hyperlink modal: URL, email, phone, anchor, internal world-item links.</li>
+                        <li>Internal links: topics, characters, events, map markers.</li>
+                        <li>Clickable links in article text, text or button style.</li>
+                        <li>Right-panel linked items and backlinks.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Maps, Markers, and Travel-Time Measurement</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/map-tab.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/map-tab.png" alt="Map and markers"
+                            style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Interactive Leaflet map: pan, zoom, add/drag/rename/recolor/delete markers.</li>
+                        <li>Unplaced markers: create first, place later.</li>
+                        <li>Marker: name, description, color, category, entity link.</li>
+                        <li>Measure mode: route-following or direct line.</li>
+                        <li>Travel output: weeks, days, hours, minutes.</li>
+                        <li>Options: on-foot pace, horse presets, custom multipliers, calibration from known trip.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Scanner and Optional Local AI</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/auto-scanning.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/auto-scanning.png" alt="AI scanner"
+                            style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Scan File/Folder: parse text, propose entities (characters, events, topics, locations).</li>
+                        <li>Review suggestions, apply individually or all at once.</li>
+                        <li>Rescan after edits, deduplicate suggestions.</li>
+                        <li>Optional local AI: enable toggle, manage models, runs offline (GGUF models).</li>
+                        <li>AI model manager: install, download, select, remove models.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Appearance, Context Menus, and App Hooks</h3>
+                    <a href="https://andrewnusz.com/wp-content/uploads/2026/03/settings.png" target="_blank"
+                        rel="noopener">
+                        <img src="https://andrewnusz.com/wp-content/uploads/2026/03/settings.png"
+                            alt="Theme and appearance" style="margin-bottom:10px; border-radius:8px;">
+                    </a>
+                    <ul>
+                        <li>Theme settings: scheme selection, custom colors, import/export/reset.</li>
+                        <li>Context menus: tree items, editors, tables, map markers.</li>
+                        <li>Keyboard: F1 help, Escape modal/fullscreen.</li>
+                        <li>Desktop menu: new/open/save/save-as, export, find/replace, rebuild index.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="tech">
+            <div class="section-head">
+                <h2>Technical Aspects</h2>
+                <p>
+                    This section explains how the app is structured in practical terms so creators and technical users
+                    know what to expect.
+                </p>
+            </div>
+            <div class="section-body">
+                <div class="tech-grid">
+                    <article class="tile">
+                        <h3>Desktop Architecture</h3>
+                        <ul>
+                            <li>Electron desktop app model for Windows, macOS, and Linux deployment.</li>
+                            <li>Front-end interface implemented in HTML/CSS/JavaScript.</li>
+                            <li>Front-end state tracks topics, characters, events, and maps as linked entities.</li>
+                        </ul>
+                    </article>
+                    <article class="tile">
+                        <h3>Editor and Mapping Stack</h3>
+                        <ul>
+                            <li>Quill-based rich text editing with custom toolbars and modal tools.</li>
+                            <li>Leaflet-based interactive map canvas for markers and route measurement.</li>
+                            <li>UI includes dedicated modals for links, tables, shapes, theme settings, and measurement
+                                configuration.</li>
+                        </ul>
+                    </article>
+                    <article class="tile">
+                        <h3>Storage and Data Safety</h3>
+                        <ul>
+                            <li>Vault data stored locally in JSON-oriented structures.</li>
+                            <li>Auto-save scheduling reduces manual save burden.</li>
+                            <li>Save As allows copy-based backups and branching project files.</li>
+                        </ul>
+                    </article>
+                    <article class="tile">
+                        <h3>Optional AI Subsystem</h3>
+                        <ul>
+                            <li>Text scanning works without AI via baseline extraction logic.</li>
+                            <li>Local AI can be enabled through model manager setup.</li>
+                            <li>Model files are large and directly affect disk and memory requirements.</li>
+                        </ul>
+                    </article>
+                </div>
+                <div class="footnote">
+                    Notes: feature depth can vary slightly depending on your installed backend tools and chosen AI model
+                    setup.
+                </div>
+            </div>
+        </section>
+
+        <section id="requirements">
+            <div class="section-head">
+                <h2>Estimated System Requirements and Platform Targets</h2>
+                <p>
+                    The values below are practical estimates for this app type and current feature set. Actual
+                    performance depends on vault size,
+                    image sizes, and whether local AI is enabled.
+                </p>
+            </div>
+            <div class="section-body req-grid">
+                <article class="tile">
+                    <h3>Where It Can Run</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Status</th>
+                                <th>Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Windows</td>
+                                <td>Supported target</td>
+                                <td>Desktop workflow with file pickers and local vault files.</td>
+                            </tr>
+                            <tr>
+                                <td>macOS</td>
+                                <td>Supported target</td>
+                                <td>Desktop workflow with the same feature model.</td>
+                            </tr>
+                            <tr>
+                                <td>Linux</td>
+                                <td>Supported target</td>
+                                <td>Desktop workflow with the same feature model.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+
+                <article class="tile">
+                    <h3>Estimated Requirements (No Local AI)</h3>
+                    <ul>
+                        <li>CPU: modern dual-core or better (Intel/AMD equivalent).</li>
+                        <li>RAM: 4 GB minimum, 8 GB recommended for larger projects.</li>
+                        <li>Storage: 1-2 GB free for app plus project files and images.</li>
+                        <li>GPU: integrated graphics is usually sufficient.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Estimated Requirements (With Local AI Models)</h3>
+                    <ul>
+                        <li>CPU: modern quad-core recommended.</li>
+                        <li>RAM: 8 GB minimum, 16 GB recommended for smoother model use.</li>
+                        <li>Storage: +2 to 8+ GB depending on installed model sizes.</li>
+                        <li>GPU: optional for acceleration, not required for all setups.</li>
+                    </ul>
+                </article>
+
+                <article class="tile">
+                    <h3>Practical Performance Notes</h3>
+                    <ul>
+                        <li>Very large map images and many markers increase memory usage.</li>
+                        <li>Large vaults with heavy formatting or many images benefit from more RAM.</li>
+                        <li>Model downloads and local AI setup are optional; core worldbuilding features do not require
+                            them.</li>
+                    </ul>
+                </article>
+            </div>
+            <div class="section-body" style="padding-top: 0;">
+                <div class="callout">
+                    <h3>Why This Matters for Writers and Worldbuilders</h3>
+                    <p>
+                        The app is built around continuity and retrieval: if your world has many names, places,
+                        historical events,
+                        and moving relationships, Extal helps you keep it navigable. You are not just writing pages -
+                        you are building
+                        a connected reference system you can actually use while drafting, planning sessions, or revising
+                        long projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Extal World Builder - Comprehensive feature reference
+        </footer>
+    </main>
+</body>
+
+</html>

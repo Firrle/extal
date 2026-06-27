@@ -1,0 +1,18 @@
+{
+  "scheme": "light",
+  "custom": {
+    "bg-primary": "#f5f3f0",
+    "bg-secondary": "#ede9e4",
+    "bg-tertiary": "#e5ddd6",
+    "text-primary": "#2c2520",
+    "text-secondary": "#5a514a",
+    "text-tertiary": "#8b7f78",
+    "border-color": "#d9cfc7",
+    "accent": "#a89468",
+    "accent-hover": "#8b754e",
+    "accent-light": "#d4c9b8",
+    "success": "#4caf50",
+    "warning": "#ffc107",
+    "danger": "#f44336"
+  }
+}

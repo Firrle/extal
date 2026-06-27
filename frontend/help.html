@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extal World Builder - Help</title>
+	    <link rel="stylesheet" href="fonts.css">
+	    <style>
+        :root {
+            --bg: #2a2a2a;
+            --bg-soft: #333;
+            --bg-card: #3a3a3a;
+            --text: #f2f2f2;
+            --muted: #c7c7c7;
+            --accent: #d4a574;
+            --line: #555;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Inter", "Segoe UI", sans-serif;
+            line-height: 1.55;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 18px 40px;
+        }
+
+        header {
+            padding: 28px 0 16px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            margin: 18px 0 22px;
+            background: rgba(42, 42, 42, 0.95);
+            backdrop-filter: blur(6px);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        nav a {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--text);
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 13px;
+        }
+
+        nav a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        section {
+            scroll-margin-top: 92px;
+            margin-bottom: 26px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--bg-card);
+        }
+
+        h2 {
+            margin: 0 0 12px;
+            font-size: 22px;
+            color: var(--accent);
+        }
+
+        h3 {
+            margin: 18px 0 8px;
+            font-size: 17px;
+        }
+
+        p, li {
+            font-size: 14px;
+        }
+
+        ul, ol {
+            margin-top: 8px;
+        }
+
+        code {
+            background: #1f1f1f;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 1px 5px;
+            color: #ffdca9;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12px;
+        }
+
+        .note {
+            margin: 10px 0;
+            padding: 10px 12px;
+            border-left: 3px solid var(--accent);
+            background: #2e2b26;
+            color: var(--muted);
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        th, td {
+            border: 1px solid var(--line);
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        th {
+            background: #2f2f2f;
+            color: var(--accent);
+            text-align: left;
+        }
+
+        .top {
+            position: fixed;
+            right: 14px;
+            bottom: 14px;
+            width: 42px;
+            height: 42px;
+            border-radius: 21px;
+            display: grid;
+            place-items: center;
+            text-decoration: none;
+            color: #111;
+            background: var(--accent);
+            border: 1px solid #a98056;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 720px) {
+            h1 { font-size: 24px; }
+            section { padding: 14px; }
+            nav { position: static; }
+        }
+	    </style>
+	    <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+    <div class="container" id="top">
+        <header>
+            <h1>Extal World Builder Help</h1>
+            <p>Current feature guide for this build. Everything below maps to controls in the app.</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#quick-start">Quick Start</a></li>
+                <li><a href="#layout">Layout</a></li>
+                <li><a href="#vaults">Vaults</a></li>
+                <li><a href="#writing">Drafting</a></li>
+                <li><a href="#topics">World</a></li>
+                <li><a href="#characters">Characters</a></li>
+                <li><a href="#timeline">Timeline</a></li>
+                <li><a href="#maps">Maps</a></li>
+                <li><a href="#measure">Distance</a></li>
+                <li><a href="#editor">Editor</a></li>
+                <li><a href="#review-tools">Review + TTS</a></li>
+                <li><a href="#links">Linking</a></li>
+                <li><a href="#scanner">Scanner + AI</a></li>
+                <li><a href="#appearance">Settings</a></li>
+                <li><a href="#desktop-menu">Desktop Menu</a></li>
+                <li><a href="#menus">Context Menus</a></li>
+                <li><a href="#shortcuts">Shortcuts</a></li>
+            </ul>
+        </nav>
+
+        <section id="quick-start">
+            <h2>Quick Start</h2>
+            <ol>
+                <li>Click <code>New Vault</code> to start a new world, or <code>Load Vault</code> to open an existing vault.</li>
+                <li>Open <code>World + Draft</code> to start building your world and drafting your manuscript.</li>
+                <li>In the left sidebar, use <code>Writing</code> for chapters/scenes and <code>World</code> for topics.</li>
+                <li>Edit content in the center editor and use the right panel for metadata, links, compile, and tools.</li>
+                <li>Use the editor toolbar for spelling and grammar, AI rewrite, TTS playback, and WAV export.</li>
+            </ol>
+            <div class="note">Changes auto-save shortly after edits. <code>Save As</code> creates a copy at a new location.</div>
+        </section>
+
+        <section id="layout">
+            <h2>Workspace Layout</h2>
+            <h3>Top Bar</h3>
+            <ul>
+                <li>Category tabs: <code>World + Draft</code>, <code>Characters</code>, <code>Timeline</code>, <code>Maps</code>.</li>
+                <li>Left and right panel toggles: <code>«</code> and <code>»</code>.</li>
+                <li>Vault controls: <code>New Vault</code>, <code>Load Vault</code>, <code>Save As</code>.</li>
+                <li>AI controls: <code>Use Local AI</code>, <code>AI Models</code>, <code>Scan File</code>, <code>Scan Folder</code>.</li>
+                <li>Info and style controls: <code>About</code>, <code>Settings</code>.</li>
+                <li>Vault name display: shows the currently loaded file, or <code>No vault loaded</code> when working in a fresh unsaved vault.</li>
+            </ul>
+            <h3>Panels</h3>
+            <ul>
+                <li>Left panel: item tree. In <code>World + Draft</code> it is split into two sections: <code>Writing</code> (chapters/scenes) and <code>World</code> (topics).</li>
+                <li>Center panel: rich editor, timeline view, map view, character tabs.</li>
+                <li>Right panel: metadata, linked items, backlinks, marker editor.</li>
+            </ul>
+            <div class="note">You can drag the vertical dividers to resize panels. The top-bar toggle buttons collapse and restore the left sidebar or right metadata panel.</div>
+            <div class="note">The editor header shows <code>Project</code> and <code>Draft</code> titles. Click either title to rename (saved in the vault).</div>
+        </section>
+
+        <section id="vaults">
+            <h2>Vaults and Saving</h2>
+            <ul>
+                <li><code>New Vault</code>: creates a fresh vault in memory.</li>
+                <li><code>Load Vault</code>: opens a vault file from disk.</li>
+                <li><code>Save As</code>: writes a copy and updates the active vault path.</li>
+                <li>Last vault path is remembered and auto-loaded on next launch when available.</li>
+            </ul>
+            <div class="note">A safety backup file <code>&lt;vault&gt;.bak</code> is created next to your vault periodically during saves.</div>
+            <div class="note">The desktop menu also includes <code>Save Vault</code>, <code>Find & Replace</code>, <code>Rebuild Vault Index</code>, and export actions for the current tab or the full vault.</div>
+            <div class="note">In <code>World + Draft</code>, tools that scope by “category” will follow what you’re editing: world topics vs writing scenes/chapters.</div>
+        </section>
+
+        <section id="writing">
+            <h2>Drafting (Chapters, Scenes)</h2>
+            <p>Drafting lives inside the <code>World + Draft</code> tab. Use the <code>Writing</code> section in the left sidebar to organize chapters and scenes.</p>
+
+            <h3>Binder (Left Panel)</h3>
+            <ul>
+                <li>Create <strong>Chapters</strong> and <strong>Scenes</strong> in a tree structure.</li>
+                <li>Right-click in the binder to add a chapter or scene.</li>
+                <li>If the binder is empty, you can generate a starter project.</li>
+            </ul>
+
+            <h3>Scene Editor + Metadata (Center + Right)</h3>
+            <ul>
+                <li>Scenes open in the rich text editor.</li>
+                <li>Scene metadata includes status, synopsis, POV, location, optional timeline date, labels, and target words.</li>
+                <li>Use the Writing links panel to connect scenes to characters, topics, maps, markers, and events.</li>
+                <li>Use <code>Insert</code> to add internal links into the manuscript text.</li>
+                <li>The main editor toolbar is available while drafting (formatting, tables, images, links, etc.).</li>
+            </ul>
+
+            <h3>Chapter Views (Corkboard / Outline)</h3>
+            <ul>
+                <li>Chapters are containers. Clicking a chapter typically opens a scene so you can start writing immediately.</li>
+                <li>Use <code>Cards</code> / <code>Outline</code> controls to switch between planning views for the current chapter.</li>
+                <li><code>Book Outline</code> shows an all-chapters outline for the full draft.</li>
+                <li><code>Multi</code> opens a multi-chapter view so you can load several chapters side-by-side, add more chapters with <code>+ Add chapter…</code>, and clear the temporary set when done.</li>
+                <li>Use <code>+ Scene</code> to create a scene within the current chapter.</li>
+            </ul>
+
+            <h3>Snapshots</h3>
+            <ul>
+                <li>Use <code>Snapshot</code> to save a named version of the current scene before a major revision.</li>
+                <li>Use <code>Compare</code> to open the snapshot manager, compare the current scene against a saved snapshot, rename snapshots, delete old ones, or restore a selected version.</li>
+                <li>Comparison modes include highlighted <code>Diff</code> view and <code>Side-by-side</code> view.</li>
+                <li>AI Rewrite also creates a protective snapshot before it applies text changes.</li>
+            </ul>
+
+            <h3>Scene Timeline Metadata</h3>
+            <ul>
+                <li>Each scene can store an optional <code>Timeline date</code> plus linked timeline events in the right panel.</li>
+                <li>Use <code>Show on Timeline</code> to jump to the linked event, or to the Timeline tab if the scene only has a date.</li>
+                <li>The app warns when a scene date falls outside a linked event range, or when chapter scene dates move backward in sequence.</li>
+            </ul>
+
+            <h3>Writing Tools</h3>
+            <ul>
+                <li>Open <code>Writing Tools</code> for typography, manuscript search/replace, project defaults, and consistency checks.</li>
+                <li><strong>Typography</strong>: paper width, padding, font size, line height, paragraph spacing, indentation, custom font family.</li>
+                <li><strong>Manuscript Search</strong>: global find/replace with case-sensitive, whole-word, and regex options.</li>
+                <li><strong>Templates</strong>: default status, target words, POV, location, labels, and scene HTML template.</li>
+                <li><strong>Consistency</strong>: quick heuristic check or AI-based contradiction check for project, chapter, or scene scope.</li>
+            </ul>
+
+            <h3>Focus Mode</h3>
+            <ul>
+                <li>Use <code>Focus Mode</code> to hide panels and write distraction-free.</li>
+                <li>Exit with the <code>Exit Focus</code> button or <code>Esc</code>.</li>
+            </ul>
+
+            <h3>Compile / Export</h3>
+            <ul>
+                <li>Use <code>Compile</code> to export writing projects as HTML, DOCX, or PDF.</li>
+                <li><code>Current chapter</code> compile works from a scene (the app will compile the scene’s chapter).</li>
+                <li>Compile scope can target the current chapter, the whole manuscript, or a custom selection of chapters and scenes.</li>
+                <li>Custom selection mode includes <code>Select all</code>, <code>Select none</code>, and a separate drag-reorder list for compile order that does not change binder order.</li>
+                <li>DOCX compile supports embedded images and tables.</li>
+            </ul>
+        </section>
+
+        <section id="topics">
+            <h2>World (Topics)</h2>
+            <h3>Create and Organize</h3>
+            <ol>
+                <li>Open <code>World + Draft</code>.</li>
+                <li>In the left sidebar, use the <code>World</code> section and click <code>+ Topic</code> for a root topic.</li>
+                <li>Right-click a topic for <code>Add Child Topic</code>, <code>Rename</code>, <code>Delete</code>.</li>
+                <li>Drag topics to reorder, nest, or move between levels.</li>
+            </ol>
+            <h3>Topic Metadata</h3>
+            <ul>
+                <li>Topic name field (live updates tree and title).</li>
+                <li>Per-topic editor background color with <code>Use Theme Default</code>.</li>
+                <li>Linked items: characters, topics, maps, markers, timeline events.</li>
+                <li>Backlinks: <code>Referenced In</code> list with click-to-navigate.</li>
+            </ul>
+        </section>
+
+        <section id="characters">
+            <h2>Characters</h2>
+            <h3>Character Metadata</h3>
+            <ul>
+                <li>Name fields, race, age, gender, class, personality, background, motivations.</li>
+                <li>Portrait options: emoji and uploaded image, plus clear image.</li>
+                <li>Tags (comma-separated input).</li>
+                <li>Linked items: characters, topics, maps, markers, events.</li>
+                <li>Backlinks section (<code>Referenced In</code>).</li>
+            </ul>
+            <h3>Character Center Tabs</h3>
+            <ul>
+                <li><code>Overview</code>: summary view.</li>
+                <li><code>Biography</code>: full rich editor.</li>
+                <li><code>Notes</code>: separate notes editor.</li>
+                <li><code>Relationships</code>: add/edit target character, relationship type, notes.</li>
+            </ul>
+            <div class="note">Most character fields auto-save as you type.</div>
+        </section>
+
+        <section id="timeline">
+            <h2>Timeline Events</h2>
+            <h3>Event Workflow</h3>
+            <ol>
+                <li>Open <code>Timeline</code> and click <code>+ Add</code>.</li>
+                <li>Edit event description in the center rich editor.</li>
+                <li>Set <code>Date</code>, <code>End Date</code>, and <code>Category</code> in the right panel.</li>
+                <li>Use linked-item dropdowns for characters, topics, maps, markers.</li>
+            </ol>
+            <h3>Timeline View</h3>
+            <ul>
+                <li>Shows event cards with date range and category.</li>
+                <li>Click a card to open that event.</li>
+                <li>Right panel also shows backlinks and a simplified relationship network.</li>
+            </ul>
+        </section>
+
+        <section id="maps">
+            <h2>Maps and Markers</h2>
+            <h3>Create and Configure a Map</h3>
+            <ol>
+                <li>Open <code>Maps</code> and add a map item.</li>
+                <li>Use <code>Replace Image</code> or <code>Change Map Image</code> in metadata.</li>
+                <li>Map metadata panel shows current image path and unplaced markers.</li>
+            </ol>
+            <h3>Map Modes and Marker Editing</h3>
+            <ul>
+                <li><code>Add Marker</code> cycles map mode between pan/add/measure states.</li>
+                <li>In add mode, click the map to place a marker.</li>
+                <li>Drag placed markers to move them.</li>
+                <li>Right-click marker menu: edit, rename, recolor, add label, copy coordinates, delete.</li>
+                <li>Marker editor fields: name, description, color, category/label.</li>
+                <li>Marker entity linking: character/topic/event with status and unlink button.</li>
+            </ul>
+            <h3>Unplaced Markers</h3>
+            <ul>
+                <li>Unplaced markers appear in the right panel list.</li>
+                <li>Use <code>Place on Map</code> to place next click, or delete from the list.</li>
+            </ul>
+        </section>
+
+        <section id="measure">
+            <h2>Distance and Travel Time</h2>
+            <h3>Basic Measuring</h3>
+            <ol>
+                <li>Click <code>📏 Measure Distance</code> in map toolbar.</li>
+                <li>Click at least two markers to build a route.</li>
+                <li>Read results in the map toolbar: walking and horse travel time.</li>
+                <li>Use <code>Clear Path</code> to reset.</li>
+            </ol>
+            <h3>Measure Options</h3>
+            <ul>
+                <li>Distance method: follow route segments or direct start-to-end line.</li>
+                <li>On-foot pace in map units/day.</li>
+                <li>Horse presets: Standard, Careful, Forced, or Custom multiplier.</li>
+                <li>Auto-calculate mounted pace from walking pace (or manual horse pace).</li>
+                <li>Time output format: weeks, days, hours, minutes.</li>
+            </ul>
+            <h3>Calibrate From a Known Trip</h3>
+            <ol>
+                <li>Measure a route first (2+ points).</li>
+                <li>Open <code>⚙ Measure Options</code>.</li>
+                <li>In <code>Known trip duration</code>, enter how long that measured route should take, e.g. <code>1 week</code> or <code>4 days 6 hours</code>.</li>
+                <li>Click <code>Set On-foot Pace From Route</code>.</li>
+                <li>Click <code>Apply</code> to save settings.</li>
+            </ol>
+        </section>
+
+        <section id="editor">
+            <h2>Rich Text Editor</h2>
+            <h3>Formatting Toolbar</h3>
+            <ul>
+                <li>Undo/redo.</li>
+                <li>Font family + font size (preset sizes plus a custom pixel input with OK / Cancel controls).</li>
+                <li>Bold, italic, underline, strikethrough.</li>
+                <li>Text color and background color, plus clear background.</li>
+                <li>Headings H1/H2/H3.</li>
+                <li>Align left/center/right.</li>
+                <li>Bullet list, numbered list, quote.</li>
+                <li>Spelling &amp; grammar (offline): <code>ABC✓</code> opens LanguageTool suggestions.</li>
+                <li>AI rewrite (offline, local model): <code>AI✎</code> rewrites selected text or the current paragraph while preserving voice.</li>
+                <li>Text to speech: <code>TTS</code> reads the current selection, or the active editor if nothing is selected.</li>
+                <li>Speech export: <code>WAV</code> saves audio from bundled Piper as a WAV file.</li>
+            </ul>
+            <div class="note">LanguageTool runs locally (127.0.0.1) and requires Java. The in-app <code>Download/Update LT</code> button only downloads when you click it.</div>
+            <h3>Images</h3>
+            <ul>
+                <li>Insert image from URL or file picker.</li>
+                <li>Alignment buttons: left, center, right, inline.</li>
+                <li>Images are resizable by dragging handles/edges.</li>
+            </ul>
+            <h3>Hyperlinks</h3>
+            <ul>
+                <li>Use <code>🔗</code> to insert or edit a link in selected text.</li>
+                <li>Link types include external URLs and internal world-item links.</li>
+                <li>The hyperlink modal supports link text, optional title tooltip, open-in-new-tab, and <code>nofollow</code> for external links.</li>
+                <li>You can remove an existing link from the same modal.</li>
+            </ul>
+            <h3>Tables</h3>
+            <ul>
+                <li>Insert table modal: rows, columns, border width/color, cell background.</li>
+                <li>Table controls appear when cursor is inside a table.</li>
+                <li>Operations include row/column add/delete, merge/split, header toggle, border/cell styling.</li>
+                <li>Table border preview toggle (<code>👁️▦</code>) hides borders when not editing.</li>
+            </ul>
+            <div class="note">Exports to DOCX include tables and embedded images.</div>
+            <h3>Shapes Tool</h3>
+            <ul>
+                <li>Insert rectangle/circle/triangle with fill + border options.</li>
+                <li>Can insert shape as image or as table-cell background.</li>
+                <li>Background fit modes: stretch, custom size, contain, cover, tile.</li>
+            </ul>
+        </section>
+
+        <section id="review-tools">
+            <h2>Review, Rewrite, and Text To Speech</h2>
+            <h3>LanguageTool (Offline)</h3>
+            <ul>
+                <li>Click <code>ABC✓</code> to open offline spelling and grammar tools.</li>
+                <li>Set the language, embedded JAR path, and local server port from the modal.</li>
+                <li>Use <code>Check Current Editor</code> or <code>Check Selection</code>.</li>
+                <li>Use <code>Download/Update LT</code> to install or refresh the local LanguageTool bundle.</li>
+                <li>Custom dictionary entries are tracked separately and can be cleared from the modal.</li>
+                <li>Suggestions can be applied one-by-one directly from the results list.</li>
+            </ul>
+
+            <h3>AI Rewrite (Local Model)</h3>
+            <ul>
+                <li>Click <code>AI✎</code> to rewrite the current selection or paragraph using your local GGUF model.</li>
+                <li>Modes include <code>Fix grammar (minimal)</code> and <code>Rewrite (preserve voice)</code>.</li>
+                <li>Use the strength slider to control how aggressive the rewrite should be.</li>
+                <li>Review the suggestion before applying it back into the editor.</li>
+            </ul>
+
+            <h3>Text To Speech</h3>
+            <ul>
+                <li>Open <code>Settings</code> to choose the TTS provider: bundled Piper or system voices.</li>
+                <li>Bundled Piper models are discovered from the app bundle and listed automatically.</li>
+                <li>Delivery presets include <code>Raw</code>, <code>Natural</code>, and <code>Narration</code>.</li>
+                <li>Grammar cleanup and pause strength can improve read-aloud pacing before playback.</li>
+                <li>Use the speed and pitch sliders plus <code>Preview Voice</code> to test your setup.</li>
+                <li>Piper WAV export uses bundled voices only. System voices are playback-only.</li>
+            </ul>
+            <div class="note">For proof-listening, run LanguageTool first if your punctuation is rough, then use TTS with <code>Natural</code> or <code>Narration</code>.</div>
+        </section>
+
+        <section id="links">
+            <h2>Linking System</h2>
+            <h3>Text Links in Articles</h3>
+            <ol>
+                <li>Select text in the editor (example: <code>Queen Anna</code>).</li>
+                <li>Click <code>🔗 Insert Link</code>.</li>
+                <li>Choose link type:
+                    <ul>
+                        <li>Website URL, Email, Phone, Page Anchor</li>
+                        <li><code>World Item (Internal)</code> for Topics/Characters/Events/Markers</li>
+                    </ul>
+                </li>
+                <li>Choose display mode: text link or button style.</li>
+                <li>Click <code>Apply</code> (or <code>Remove Link</code>).</li>
+            </ol>
+            <h3>Previews and Navigation</h3>
+            <ul>
+                <li>Hover linked items in metadata lists to preview basic information before navigating.</li>
+                <li>Relationship views in event metadata provide a simplified network of connected items for quick navigation.</li>
+            </ul>
+            <h3>Linked Items + Backlinks</h3>
+            <ul>
+                <li>Right panel link pills navigate to linked items.</li>
+                <li><code>×</code> removes a link from the current item.</li>
+                <li>Backlink sections show where the current item is referenced.</li>
+                <li>Internal links inside editor content are clickable and navigate directly.</li>
+            </ul>
+        </section>
+
+        <section id="scanner">
+            <h2>Scanner and Local AI</h2>
+            <h3>Scan File / Scan Folder</h3>
+            <ol>
+                <li>Use <code>Scan File</code> or <code>Scan Folder</code> in top bar.</li>
+                <li>Text must be at least 50 characters.</li>
+                <li>Review suggestions modal for characters, events, topics, and existing-entity matches.</li>
+                <li>Use per-item <code>Add Now</code> or <code>Apply All Checked</code>.</li>
+                <li>Use <code>Rescan</code> to rerun with current settings.</li>
+            </ol>
+            <h3>Use Local AI (Optional)</h3>
+            <ul>
+                <li>Enable <code>Use Local AI</code> toggle before scanning.</li>
+                <li>Open <code>AI Models</code> to manage local models.</li>
+                <li>Model manager supports:
+                    <ul>
+                        <li>Install <code>llama-cpp-python</code></li>
+                        <li>Download/delete supported models</li>
+                        <li>Select active installed model</li>
+                    </ul>
+                </li>
+                <li>Local AI runs on your machine using GGUF models; no text is sent online.</li>
+            </ul>
+        </section>
+
+        <section id="appearance">
+            <h2>Settings, Themes, Templates, and TTS</h2>
+            <ol>
+                <li>Open <code>🎨 Settings</code>.</li>
+                <li>Select a built-in color scheme.</li>
+                <li>Adjust individual color tokens in Custom Colors.</li>
+                <li>Use <code>Import Theme</code>, <code>Export Theme</code>, or <code>Reset</code>.</li>
+            </ol>
+            <ul>
+                <li>Editor font family and size are configurable from the editor toolbar.</li>
+                <li>Theme and font choices are persisted.</li>
+                <li>Settings also include default templates for new topics and new characters.</li>
+                <li>You can apply the selected template to the current item, save the current topic/character as a custom template, or delete a selected custom template.</li>
+                <li>Template selectors also show the active default template and its description before you apply it.</li>
+                <li>TTS settings include provider, system voice, Piper model, delivery preset, grammar cleanup, pause strength, speed, pitch, and voice preview.</li>
+                <li>Topic and character templates can be set as defaults, applied to the current item, or captured from the current item.</li>
+            </ul>
+            <div class="note">Theme settings are local UI preferences. Writing typography and writing project defaults are saved in the vault.</div>
+        </section>
+
+        <section id="desktop-menu">
+            <h2>Desktop Menu</h2>
+            <table>
+                <thead>
+                    <tr><th>Menu</th><th>What It Does</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>File → New/Open/Save/Save As</td>
+                        <td>Create a new vault, open an existing vault, save the active vault, or write a copy to a new file.</td>
+                    </tr>
+                    <tr>
+                        <td>File → Find &amp; Replace</td>
+                        <td>Search indexed vault content and jump to matching entries.</td>
+                    </tr>
+                    <tr>
+                        <td>File → Rebuild Vault Index</td>
+                        <td>Rebuilds the search index if results look stale or incomplete.</td>
+                    </tr>
+                    <tr>
+                        <td>File → Export Current Tab</td>
+                        <td>Exports the current workspace. In <code>World + Draft</code>, export targets what you’re currently editing (<code>World</code> topics vs <code>Writing</code> scenes/chapters).</td>
+                    </tr>
+                    <tr>
+                        <td>File → Export All Content</td>
+                        <td>Exports the whole vault in the selected format.</td>
+                    </tr>
+                    <tr>
+                        <td>File → User Guide</td>
+                        <td>Opens this in-app guide in the help modal or a separate help window, depending on how it is invoked.</td>
+                    </tr>
+                    <tr>
+                        <td>View → Debug Console</td>
+                        <td>Opens the internal debug log window for runtime messages and captured errors.</td>
+                    </tr>
+                    <tr>
+                        <td>Help → User Guide / About</td>
+                        <td>Opens this guide or shows version/about information.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="menus">
+            <h2>Context Menus</h2>
+            <table>
+                <thead>
+                    <tr><th>Where</th><th>Actions</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tree item (right-click)</td>
+                        <td>Add child item (topic under World, scene under a chapter), rename, delete.</td>
+                    </tr>
+                    <tr>
+                        <td>Editor (right-click)</td>
+                        <td>Undo/redo, cut/copy/paste, select all, bold/italic/underline, insert/remove link, insert image.</td>
+                    </tr>
+                    <tr>
+                        <td>Table cell (right-click)</td>
+                        <td>Select row/column/all, row/column add/delete, merge/split, header toggle, border/cell style actions, image cleanup.</td>
+                    </tr>
+                    <tr>
+                        <td>Map marker (right-click)</td>
+                        <td>Edit, rename, change color, add label, copy coordinates, delete.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="shortcuts">
+            <h2>Keyboard and Interaction Shortcuts</h2>
+            <ul>
+                <li><code>F1</code>: open this help page.</li>
+                <li><code>F12</code>: open the internal debug console in the Linux packaged build.</li>
+                <li><code>Esc</code>: close modals; exits focus mode; exits fullscreen if active.</li>
+                <li>In modals: <code>Enter</code> applies/accepts; <code>Esc</code> closes.</li>
+                <li>Table shortcuts (cursor in a table cell):
+                    <ul>
+                        <li><code>Ctrl/Cmd + Alt + ArrowUp</code>: add row above</li>
+                        <li><code>Ctrl/Cmd + Alt + ArrowDown</code>: add row below</li>
+                        <li><code>Ctrl/Cmd + Alt + ArrowLeft</code>: add column left</li>
+                        <li><code>Ctrl/Cmd + Alt + ArrowRight</code>: add column right</li>
+                        <li><code>Ctrl/Cmd + Alt + M</code>: merge cell</li>
+                        <li><code>Ctrl/Cmd + Alt + S</code>: split cell</li>
+                        <li><code>Ctrl/Cmd + Alt + H</code>: toggle header row</li>
+                        <li><code>Ctrl/Cmd + Shift + A</code>: select all cells in current table</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="note">There is no dedicated Save button in the top bar. Saving is automatic, and Save As is available from the top bar.</div>
+        </section>
+    </div>
+
+    <button class="top" type="button" title="Back to top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">↑</button>
+</body>
+</html>

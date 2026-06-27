@@ -1,0 +1,18 @@
+{
+  "scheme": "cyberpunk",
+  "custom": {
+    "bg-primary": "#0d0221",
+    "bg-secondary": "#1a0033",
+    "bg-tertiary": "#26004d",
+    "text-primary": "#00ff88",
+    "text-secondary": "#00cc66",
+    "text-tertiary": "#ff006e",
+    "border-color": "#ff006e",
+    "accent": "#ff006e",
+    "accent-hover": "#00ff88",
+    "accent-light": "#ff0099",
+    "success": "#00ff88",
+    "warning": "#ffbe0b",
+    "danger": "#ff006e"
+  }
+}

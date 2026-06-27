@@ -1,0 +1,18 @@
+{
+  "scheme": "dark",
+  "custom": {
+    "bg-primary": "#000000",
+    "bg-secondary": "#2b2b2b",
+    "bg-tertiary": "#000000",
+    "text-primary": "#ff8a00",
+    "text-secondary": "#ff8a00",
+    "text-tertiary": "#2b2b2b",
+    "border-color": "#2b2b2b",
+    "accent": "#ff8a00",
+    "accent-hover": "#ff8a00",
+    "accent-light": "#2b2b2b",
+    "success": "#ff8a00",
+    "warning": "#ff8a00",
+    "danger": "#ff8a00"
+  }
+}

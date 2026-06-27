@@ -1,0 +1,152 @@
+{
+  "characters": [
+    {
+      "name": "Arthur",
+      "mentions": 1,
+      "contexts": [
+        "King Arthur"
+      ],
+      "titles": [
+        "King"
+      ],
+      "confidence": 0.9,
+      "suggested_race": "",
+      "suggested_gender": "Male",
+      "first_name": "Arthur",
+      "last_name": ""
+    },
+    {
+      "name": "Elise",
+      "mentions": 1,
+      "contexts": [
+        "Queen Elise"
+      ],
+      "titles": [
+        "Queen"
+      ],
+      "confidence": 0.9,
+      "suggested_race": "",
+      "suggested_gender": "Female",
+      "first_name": "Elise",
+      "last_name": ""
+    }
+  ],
+  "events": [],
+  "topics": [
+    {
+      "name": "Politics",
+      "keywords": [
+        "kingdom"
+      ],
+      "frequency": 1,
+      "confidence": 0.15285714285714286,
+      "suggested_parent": "Elise",
+      "description": "King Arthur ruled the kingdom with Queen Elise"
+    },
+    {
+      "name": "Culture",
+      "keywords": [
+        "art"
+      ],
+      "frequency": 1,
+      "confidence": 0.15285714285714286,
+      "suggested_parent": "Elise",
+      "description": "King Arthur ruled the kingdom with Queen Elise"
+    }
+  ],
+  "locations": [],
+  "matches": {
+    "characters": [],
+    "topics": [
+      {
+        "id": "id-yrtvdvuhf",
+        "name": "Elise",
+        "mentions": 1,
+        "type": "existing"
+      }
+    ],
+    "events": [],
+    "locations": []
+  },
+  "ai_enhanced": {
+    "characters": [
+      {
+        "name": "Elishe",
+        "title": "Queen",
+        "gender": "female"
+      },
+      {
+        "name": "Artur",
+        "title": "King",
+        "gender": "male"
+      }
+    ],
+    "events": [
+      {
+        "name": "Artur's coronation",
+        "date": "10th of August, 2019",
+        "location": "The Great Hall"
+      },
+      {
+        "name": "Elishe's wedding",
+        "date": "23rd of August, 2019",
+        "location": "The Great Hall"
+      }
+    ],
+    "location": [
+      {
+        "name": "The Great Hall",
+        "type": "castle"
+      },
+      {
+        "name": "The Palace",
+        "type": "palace"
+      }
+    ],
+    "topics": [
+      {
+        "name": "The kingdom's economy",
+        "description": "The kingdom's economy is booming, with a strong focus on agriculture and trade. However, there are concerns about the impact of climate change and natural disasters."
+      },
+      {
+        "name": "The kingdom's politics",
+        "description": "King Artur is known for his charismatic personality and his dedication to the kingdom's interests. However, there are concerns about the stability of his reign and the potential for a power vacuum."
+      },
+      {
+        "name": "The kingdom's culture",
+        "description": "The kingdom's culture is diverse and vibrant, with a rich history and traditions. However, there are concerns about the impact of globalization and the potential for cultural assimilation."
+      }
+    ],
+    "method": "Local LLM (tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf)"
+  },
+  "suggestions": {
+    "new_characters": [
+      {
+        "name": "Arthur",
+        "firstName": "Arthur",
+        "lastName": "",
+        "titles": [
+          "King"
+        ],
+        "gender": "Male",
+        "confidence": 0.9,
+        "mentions": 1
+      },
+      {
+        "name": "Elise",
+        "firstName": "Elise",
+        "lastName": "",
+        "titles": [
+          "Queen"
+        ],
+        "gender": "Female",
+        "confidence": 0.9,
+        "mentions": 1
+      }
+    ],
+    "new_events": [],
+    "new_topics": [],
+    "new_locations": [],
+    "link_suggestions": []
+  }
+}

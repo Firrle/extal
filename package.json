@@ -1,0 +1,77 @@
+{
+  "name": "extalworldbuilder",
+  "version": "0.8.0-c",
+  "packageManager": "traversal",
+  "description": "A cross-platform worldbuilding application powered by Electron.",
+  "author": {
+    "name": "Andrew D Nusz",
+    "email": "andrew@extal.dev"
+  },
+  "copyright": "Copyright © 2026 Andrew D Nusz. All rights reserved.",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "node scripts/start-electron.js",
+    "prebuild": "npm run fonts:generate && node scripts/download-llama-wheel.js",
+    "dist": "npm run fonts:generate && node scripts/download-llama-wheel.js && electron-builder",
+    "dist:win": "npm run fonts:generate && node scripts/download-llama-wheel.js && electron-builder --win dir --config.win.signAndEditExecutable=false && node -e \"require('rcedit').rcedit('dist/win-unpacked/ExtalWorldBuilder.exe',{icon:'frontend/assets/icon.ico'})\"",
+    "dist:linux": "npm run fonts:generate && node scripts/download-llama-wheel.js && electron-builder --linux AppImage",
+    "dist:mac": "npm run fonts:generate && node scripts/download-llama-wheel.js && electron-builder --mac zip",
+    "fonts:generate": "node scripts/generate-fonts.js",
+    "fonts:watch": "node scripts/generate-fonts.js --watch"
+  },
+  "devDependencies": {
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1",
+    "rcedit": "^5.0.2"
+  },
+  "build": {
+    "appId": "com.extal.worldbuilder",
+    "productName": "ExtalWorldBuilder",
+    "electronVersion": "40.6.1",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/**",
+      "node_modules/tinymce/**",
+      "!.git/**",
+      "!.venv/**",
+      "!backend/models/**",
+      "!backend/python-full-*.zip",
+      "!**/.DS_Store",
+      "!**/*.log",
+      "!**/tmp/**",
+      "!**/cache/**",
+      "!build/**"
+    ],
+    "extraResources": [],
+    "asarUnpack": [
+      "backend/*.py",
+      "backend/python/**",
+      "backend/lib/**",
+      "tts/piper/**"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility",
+      "icon": "frontend/assets/icon.png"
+    },
+    "win": {
+      "target": "dir",
+      "icon": "frontend/assets/icon.ico"
+    },
+    "mac": {
+      "target": "zip",
+      "icon": "frontend/assets/icon.icns"
+    }
+  },
+  "dependencies": {
+    "tinymce": "^8.6.0"
+  }
+}

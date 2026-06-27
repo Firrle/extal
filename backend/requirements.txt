@@ -1,0 +1,19 @@
+# Core requirements for auto-scanner
+
+# Optional AI/NLP enhancements (install as needed):
+
+# Option 1: OpenAI API (most powerful, requires API key)
+# openai>=1.0.0
+
+# Option 2: Anthropic API (Claude, requires API key)
+# anthropic>=0.18.0
+
+# Option 3: spaCy (free, local NER)
+# spacy>=3.7.0
+# To use spaCy, also run: python -m spacy download en_core_web_sm
+
+# Option 4: For more advanced local NLP
+# transformers>=4.30.0
+# torch>=2.0.0
+
+# Note: The script works without any of these installed using rule-based extraction only

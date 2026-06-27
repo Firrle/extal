@@ -1,0 +1,390 @@
+/* Shared UI styles (handwritten).
+   Keep this file framework-agnostic and safe to include on any frontend/*.html page. */
+
+:root {
+  /* Button shine/shadow layers (designed to work over whatever background color a theme applies). */
+  --extal-btn-shine: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.32),
+    rgba(255, 255, 255, 0.14) 55%,
+    rgba(0, 0, 0, 0.18)
+  );
+  --extal-btn-shine-hover: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.38),
+    rgba(255, 255, 255, 0.16) 55%,
+    rgba(0, 0, 0, 0.22)
+  );
+  --extal-btn-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.40),
+    0 1px 2px rgba(0, 0, 0, 0.32);
+  --extal-btn-shadow-hover: inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45),
+    0 3px 10px rgba(0, 0, 0, 0.28);
+  --extal-btn-shadow-pressed: inset 0 2px 4px rgba(0, 0, 0, 0.55);
+
+  /* Writing view tokens (defaults inherit from active theme variables). */
+  --writing-canvas-bg: var(--bg-secondary, #333);
+  --writing-paper-bg: var(--editor-bg, var(--bg-primary, #2a2a2a));
+  --writing-paper-text: var(--text-primary, #f2f2f2);
+  --writing-paper-link: var(--accent, #d4a574);
+  --writing-paper-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+/* Base "shaded / 3D" treatment.
+   Important: Only touch shine + shadow so existing theme colors/padding/fonts remain intact. */
+:where(
+    button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    a.extal-link-button
+  ) {
+  /* Many existing button rules use the `background` shorthand, which resets `background-image`.
+     Use `!important` so the shine layer consistently shows while still preserving their background-color. */
+  background-image: var(--extal-btn-shine) !important;
+  box-shadow: var(--extal-btn-shadow) !important;
+  transition: box-shadow 0.15s ease, background-image 0.15s ease, filter 0.15s ease;
+}
+
+:where(
+    button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    a.extal-link-button
+  ):not(:disabled):hover {
+  background-image: var(--extal-btn-shine-hover) !important;
+  box-shadow: var(--extal-btn-shadow-hover) !important;
+}
+
+/* Writing mode (LibreOffice-lite page feel) */
+body.writing-mode #editor-container {
+  background: var(--writing-canvas-bg) !important;
+}
+
+body.writing-mode #editor-content-wrapper {
+  max-width: var(--writing-paper-width, 760px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+body.writing-mode #editor-content-wrapper,
+body.writing-mode :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor),
+body.writing-mode #editor-content-wrapper[data-extal-editor="tinymce"],
+body.writing-mode #editor-content-wrapper.mce-content-body {
+  width: 100%;
+  min-height: 0;
+  margin: 0 !important;
+  padding: var(--writing-paper-padding, 84px) !important;
+  background: var(--writing-paper-bg) !important;
+  color: var(--writing-paper-text) !important;
+  font-size: var(--writing-font-size, 16px) !important;
+  line-height: var(--writing-line-height, 1.75) !important;
+  font-family: var(
+    --writing-font-family,
+    "Source Serif 4",
+    "Lora",
+    "Georgia",
+    "Times New Roman",
+    serif
+  ) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 4px;
+  box-sizing: border-box;
+  box-shadow: var(--writing-paper-shadow);
+}
+
+/* Paragraph spacing + indent (Writing mode) */
+body.writing-mode #editor-content-wrapper p,
+body.writing-mode :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) p,
+body.writing-mode #editor-content-wrapper[data-extal-editor="tinymce"] p,
+body.writing-mode #editor-content-wrapper.mce-content-body p {
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: var(--writing-paragraph-spacing, 0px);
+  margin-left: var(--writing-paragraph-indent, 0px);
+  text-indent: var(--writing-first-line-indent, 28px);
+}
+
+/* Novel convention: first paragraph is often not indented (chapter open). */
+body.writing-mode #editor-content-wrapper p:first-child,
+body.writing-mode :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) p:first-child,
+body.writing-mode #editor-content-wrapper[data-extal-editor="tinymce"] p:first-child,
+body.writing-mode #editor-content-wrapper.mce-content-body p:first-child {
+  text-indent: 0;
+}
+
+body.writing-mode #editor-content-wrapper p:last-child,
+body.writing-mode :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) p:last-child,
+body.writing-mode #editor-content-wrapper[data-extal-editor="tinymce"] p:last-child,
+body.writing-mode #editor-content-wrapper.mce-content-body p:last-child {
+  margin-bottom: 0;
+}
+
+body.writing-mode :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) [class*="ql-font-"] {
+  font-family: inherit !important;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li {
+  counter-reset: list-1 list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+  counter-increment: list-0;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li::before {
+  content: counter(list-0, upper-roman) '. ';
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-1 {
+  counter-increment: list-1;
+  counter-reset: list-2 list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-1::before {
+  content: counter(list-1, decimal) '. ';
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-2 {
+  counter-increment: list-2;
+  counter-reset: list-3 list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-2::before {
+  content: counter(list-2, lower-alpha) '. ';
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-3 {
+  counter-increment: list-3;
+  counter-reset: list-4 list-5 list-6 list-7 list-8 list-9;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-3::before {
+  content: counter(list-3, lower-roman) '. ';
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-4 {
+  counter-increment: list-4;
+  counter-reset: list-5 list-6 list-7 list-8 list-9;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-4::before {
+  content: counter(list-4, decimal) '. ';
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-5 {
+  counter-increment: list-5;
+  counter-reset: list-6 list-7 list-8 list-9;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-5::before {
+  content: counter(list-5, lower-alpha) '. ';
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-6 {
+  counter-increment: list-6;
+  counter-reset: list-7 list-8 list-9;
+}
+
+body:not(.writing-mode) :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) ol > li.ql-indent-6::before {
+  content: counter(list-6, lower-roman) '. ';
+}
+
+body.writing-mode #editor-content-wrapper a,
+body.writing-mode :is(#editor-content-wrapper, #editor-content-wrapper .ql-editor) a {
+  color: var(--writing-paper-link);
+}
+
+body.writing-focus #category-tabs,
+body.writing-focus #panel-left,
+body.writing-focus #panel-right,
+body.writing-focus #divider-left-center,
+body.writing-focus #divider-center-right {
+  display: none !important;
+}
+
+body.writing-focus #panel-center {
+  flex: 1 1 auto;
+  width: 100% !important;
+}
+
+#writing-exit-focus {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10050;
+  display: none;
+}
+
+body.writing-focus #writing-exit-focus {
+  display: inline-flex;
+}
+
+/* Inline entity assist + hover cards */
+.entity-assist {
+  position: fixed;
+  z-index: 10080;
+  width: 340px;
+  max-height: 260px;
+  overflow: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  padding: 6px;
+}
+
+.entity-assist.hidden {
+  display: none;
+}
+
+.entity-assist-item {
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.entity-assist-item:hover,
+.entity-assist-item.active {
+  background: rgba(212, 165, 116, 0.18);
+}
+
+.entity-hover-card {
+  position: fixed;
+  z-index: 10090;
+  width: 420px;
+  max-width: calc(100vw - 16px);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: var(--bg-secondary);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+  padding: 10px;
+}
+
+.entity-hover-card.hidden {
+  display: none;
+}
+
+/* Snapshot diff helpers */
+.snapshot-pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.snapshot-del {
+  background: rgba(255, 64, 64, 0.18);
+  text-decoration: none;
+}
+
+.snapshot-ins {
+  background: rgba(66, 185, 131, 0.18);
+  text-decoration: none;
+}
+
+/* Writing corkboard + outline drag indicators */
+.cork-card.drag-over {
+  outline: 2px dashed var(--accent, #d4a574);
+  outline-offset: 2px;
+}
+
+tr.drag-over-top {
+  box-shadow: inset 0 3px 0 0 var(--accent, #d4a574);
+}
+
+tr.drag-over-bottom {
+  box-shadow: inset 0 -3px 0 0 var(--accent, #d4a574);
+}
+
+/* Compile order list (Writing) */
+.compile-order-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  margin-bottom: 8px;
+}
+
+.compile-order-handle {
+  width: 18px;
+  text-align: center;
+  cursor: grab;
+  opacity: 0.8;
+  user-select: none;
+}
+
+.compile-order-item.dragging {
+  opacity: 0.65;
+}
+
+.compile-order-item.drag-over-top {
+  box-shadow: inset 0 3px 0 0 var(--accent, #d4a574);
+}
+
+.compile-order-item.drag-over-bottom {
+  box-shadow: inset 0 -3px 0 0 var(--accent, #d4a574);
+}
+
+/* "Pressed" should be visually flat: no shine, mostly inset shadow. */
+:where(
+    button,
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    a.extal-link-button
+  ):not(:disabled):active {
+  background-image: none !important;
+  box-shadow: var(--extal-btn-shadow-pressed) !important;
+  filter: brightness(0.97);
+}
+
+/* Toggle/selected states should also read as pressed-in. */
+button[aria-pressed="true"],
+button.active {
+  background-image: none !important;
+  box-shadow: var(--extal-btn-shadow-pressed) !important;
+  filter: brightness(0.98);
+}
+
+/* Keep "ghost" icon buttons (close X, etc.) from inheriting a background shine when transparent. */
+.modal-close-btn,
+.settings-close-btn,
+.btn-ghost {
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.modal-close-btn:hover,
+.settings-close-btn:hover,
+.btn-ghost:hover {
+  background-image: var(--extal-btn-shine-hover) !important;
+  box-shadow: var(--extal-btn-shadow-hover) !important;
+}
+
+.modal-close-btn:active,
+.settings-close-btn:active,
+.btn-ghost:active {
+  background-image: none !important;
+  box-shadow: var(--extal-btn-shadow-pressed) !important;
+}
+
+/* Button-like links (used for "render as button"). */
+a.extal-link-button {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Prefer native focus styles when a theme doesn't define one. */
+:where(button, input[type="button"], input[type="submit"], input[type="reset"], a.extal-link-button):focus-visible {
+  outline: 2px solid var(--accent, #d4a574);
+  outline-offset: 2px;
+}

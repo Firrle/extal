@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Build and packaging output
+dist/
+dist-src/
+build/
+squashfs-root/
+build.log
+*.log
+
+# Bundled runtimes and generated binary payloads
+backend/python/
+backend/lib/python/*.whl
+backend/lib/python/wheels/
+tts/piper/models/*.onnx
+tts/piper/linux/
+tts/piper/windows/
+mailing_list/*.zip
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Local tool state
+.codex
+.codex/
+.history-memo/
+.tmp/
+.opencode/
+.vscode/
+*.code-workspace
+
+# Editor/OS noise
+.DS_Store
+Thumbs.db
